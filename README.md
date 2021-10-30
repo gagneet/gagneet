@@ -14,9 +14,9 @@ I love the entire process of developing and creating innovative ideas to be lazy
 
 ### 🤝 Connect with me:
 
-<a href="https://www.linkedin.com/in/gagneet/"><img align="left" src="https://raw.githubusercontent.com/gagneet/gagneet/main/images/linkedin.svg" alt="Gagneet Singh | LinkedIn" width="21px"/></a>
-<a href="https://twitter.com/gagneet"><img align="left" src="https://img.shields.io/badge/twitter-gagneet-blue" alt="Gagneet Singh | Twitter" width="21px"/></a>
-<a href="https://medium.com/@gagneet"><img align="left" src="https://raw.githubusercontent.com/gagneet/gagneet/main/images/medium.svg" alt="Gagneet Singh | Medium" width="21px"/></a>
+<a href="https://www.linkedin.com/in/gagneet/"><img align="left" src="https://img.shields.io/badge/-LinkedIn-0e76a8?style=plastic&logo=linkedIn" alt="Gagneet Singh | LinkedIn" width="21px"/></a>
+<a href="https://twitter.com/gagneet"><img align="left" src="https://img.shields.io/badge/-Twitter-1DA1F2?style=plastic&logo=Twitter" alt="Gagneet Singh | Twitter" width="21px"/></a>
+<a href="https://medium.com/@gagneet"><img align="left" src="https://img.shields.io/badge/-Instagram-833AB4?style=plastic&logo=Medium" alt="Gagneet Singh | Medium" width="21px"/></a>
 </br>
 - 💬 If you have any question/feedback, please do not hesitate to reach out to me!
 
