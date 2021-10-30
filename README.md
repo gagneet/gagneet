@@ -1,9 +1,9 @@
 <p align="center">
-  <a href="https://www.gagneet.com/" target="_blank" rel="noreferrer"><img src="https://user-images.githubusercontent.com/203433/139530832-4c172386-ec46-4ccd-be70-f5e5056d3405.jpg" alt="gagneet banner"></a>
+  <a href="http://gagneet.com/" target="_blank" rel="noreferrer"><img src="https://user-images.githubusercontent.com/203433/139530832-4c172386-ec46-4ccd-be70-f5e5056d3405.jpg" alt="gagneet banner"></a>
 </p>
 
 <h3 align="center">
-Hi there, Let's Start with the Tech Blog & <a href="https://www.gagneet.com/" target="_blank" rel="noreferrer">Live Long and Prosper</a> 👋👋
+Hi there, Let's Start with the Tech Blog & <a href="http://gagneet.com/" target="_blank" rel="noreferrer">Live Long and Prosper</a> 👋👋
 </h3>
 
 <h2 align="center">
@@ -67,7 +67,7 @@ I love the entire process of developing and creating innovative ideas to be lazy
 
 ## 📈 GitHub Stats 
 
-[![Visits Badge](https://badges.pufler.dev/visits/gagneet/gagneet)](https:gagneet.com)
+[![Visits Badge](https://badges.pufler.dev/visits/gagneet/gagneet)](http:gagneet.com)
 [![Twitter Badge](https://img.shields.io/badge/Twitter-Profile-informational?style=flat&logo=twitter&logoColor=white&color=1CA2F1)](https://twitter.com/gagneet)
 [![LinkedIn Badge](https://img.shields.io/badge/LinkedIn-Profile-informational?style=flat&logo=linkedin&logoColor=white&color=0D76A8)](https://www.linkedin.com/in/gagneet/)
 [![CodePen Badge](https://img.shields.io/badge/CodePen-Profile-informational?style=flat&logo=codepen&logoColor=white&color=black)](https://codepen.io/gagneet)
@@ -76,7 +76,7 @@ I love the entire process of developing and creating innovative ideas to be lazy
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=gagneet&layout=compact)](https://github.com/gagneet)
 
-[![Visitors](https://visitor-badge.glitch.me/badge?page_id=gagneet.gagneet)](https://www.gagneet.com/)
+[![Visitors](https://visitor-badge.glitch.me/badge?page_id=gagneet.gagneet)](http://gagneet.com/)
 
 
 <!--
