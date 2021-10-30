@@ -3,7 +3,7 @@
 </p>
 
 <h3 align="center">
-Hi there, I'm <a href="https://www.gagneet.com/" target="_blank" rel="noreferrer">Live Long and Prosper</a> 👋👋
+Hi there, Let's Start with the Tech Blog & <a href="https://www.gagneet.com/" target="_blank" rel="noreferrer">Live Long and Prosper</a> 👋👋
 </h3>
 
 <h2 align="center">
@@ -14,9 +14,9 @@ I love the entire process of developing and creating innovative ideas to be lazy
 
 ### 🤝 Connect with me:
 
-<a href="https://www.linkedin.com/in/gagneet/"><img align="left" src="https://img.shields.io/badge/-LinkedIn-0e76a8?style=plastic&logo=linkedIn" alt="Gagneet Singh | LinkedIn" width="21px"/></a>
-<a href="https://twitter.com/gagneet"><img align="left" src="https://img.shields.io/badge/-Twitter-1DA1F2?style=plastic&logo=Twitter" alt="Gagneet Singh | Twitter" width="21px"/></a>
-<a href="https://medium.com/@gagneet"><img align="left" src="https://img.shields.io/badge/-Instagram-833AB4?style=plastic&logo=Medium" alt="Gagneet Singh | Medium" width="21px"/></a>
+<a href="https://www.linkedin.com/in/gagneet/"><img align="left" src="https://img.shields.io/badge/-LinkedIn-0e76a8?style=plastic&logo=linkedIn" alt="Gagneet Singh | LinkedIn" width="75px"/></a>
+<a href="https://twitter.com/gagneet"><img align="left" src="https://img.shields.io/badge/-Twitter-1DA1F2?style=plastic&logo=Twitter" alt="Gagneet Singh | Twitter" width="75px"/></a>
+<a href="https://medium.com/@gagneet"><img align="left" src="https://img.shields.io/badge/-Instagram-833AB4?style=plastic&logo=Medium" alt="Gagneet Singh | Medium" width="75px"/></a>
 </br>
 - 💬 If you have any question/feedback, please do not hesitate to reach out to me!
 
