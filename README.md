@@ -14,9 +14,9 @@ I love the entire process of developing and creating innovative ideas to be lazy
 
 ### 🤝 Connect with me:
 
-<a href="https://www.linkedin.com/in/gagneet/"><img align="left" src="https://img.shields.io/badge/-LinkedIn-0e76a8?style=plastic&logo=linkedIn" alt="Gagneet Singh | LinkedIn" width="75px"/></a>
-<a href="https://twitter.com/gagneet"><img align="left" src="https://img.shields.io/badge/-Twitter-1DA1F2?style=plastic&logo=Twitter" alt="Gagneet Singh | Twitter" width="75px"/></a>
-<a href="https://medium.com/@gagneet"><img align="left" src="https://img.shields.io/badge/-Instagram-833AB4?style=plastic&logo=Medium" alt="Gagneet Singh | Medium" width="75px"/></a>
+<a href="https://www.linkedin.com/in/gagneet/"><img align="left" src="https://img.shields.io/badge/-LinkedIn-0e76a8?style=plastic&logo=linkedIn" alt="Gagneet Singh | LinkedIn" width="125px"/></a>
+<a href="https://twitter.com/gagneet"><img align="left" src="https://img.shields.io/badge/-Twitter-1DA1F2?style=plastic&logo=Twitter" alt="Gagneet Singh | Twitter" width="125px"/></a>
+<a href="https://medium.com/@gagneet"><img align="left" src="https://img.shields.io/badge/-Instagram-833AB4?style=plastic&logo=Medium" alt="Gagneet Singh | Medium" width="125px"/></a>
 </br>
 - 💬 If you have any question/feedback, please do not hesitate to reach out to me!
 
@@ -63,10 +63,7 @@ I love the entire process of developing and creating innovative ideas to be lazy
 
 ## 📝 Latest Blog Posts
 
-- [Deploy Rails API Backend to Heroku and React Frontend to Netlify](https://yushi95.medium.com/deploy-rails-api-backend-to-heroku-and-react-frontend-to-netlify-b515239d5022)
-- [Animation Login Popup Form by Using React State Hook and CSS](https://medium.com/geekculture/animation-login-popup-form-by-using-react-state-hook-and-css-7ecf803f1fa9)
-- [Checklist ✅ for Rails Application](https://yushi95.medium.com/checklist-for-rails-application-30868cb4f48b)
-- [Self and Operator in Ruby](https://blog.usejournal.com/self-in-ruby-5e8a91fa4602)
+- [DevOps: Skillset, but with a new Mindset](https://medium.com/@gagneet/devops-skillset-but-with-a-new-mindset-ded3333da2d8)
 
 ## 📈 GitHub Stats 
 
