@@ -7,8 +7,8 @@ Hi there, Let's Start with the Tech Blog & <a href="http://gagneet.com/" target=
 </h3>
 
 <h2 align="center">
-I'm an Automation, Performance and Sercuity testing expert 💻, Love publishing pics I took 📸, and electronic hobbyist 🎨!
-</h2> 
+I'm an Automation, Performance and Sercuity testing expert 💻, Love publishing pics I took 📸, and an electronic hobbyist 🎨!
+</h2>
 
 I love the entire process of developing and creating innovative ideas to be lazy.
 
@@ -25,7 +25,7 @@ I love the entire process of developing and creating innovative ideas to be lazy
 - Test Automation projects with various enterprises and start-ups
 - Health Care Web and Mobile App (React & React-Native)
 - My blog about technology
-- My NodeJS, React and Cypress skillsets
+- My NodeJS, React and Test Automation (using modern tools - Cypress, Playwright) skillsets
 
 ## 🌱 I'm currently learning
 
@@ -33,7 +33,7 @@ I love the entire process of developing and creating innovative ideas to be lazy
 - React Native 📱
 - Cypress framework
 - Security & Performance Testing tools
-- Next level of Cybrary certification  
+- Next level of Cybrary certification
 
 ## 💼 Technical Skills
 
@@ -65,14 +65,25 @@ I love the entire process of developing and creating innovative ideas to be lazy
 
 - [DevOps: Skillset, but with a new Mindset](https://medium.com/@gagneet/devops-skillset-but-with-a-new-mindset-ded3333da2d8)
 
-## 📈 GitHub Stats 
+## 📈 GitHub Stats
 
 [![Visits Badge](https://badges.pufler.dev/visits/gagneet/gagneet)](http:gagneet.com)
 [![Twitter Badge](https://img.shields.io/badge/Twitter-Profile-informational?style=flat&logo=twitter&logoColor=white&color=1CA2F1)](https://twitter.com/gagneet)
 [![LinkedIn Badge](https://img.shields.io/badge/LinkedIn-Profile-informational?style=flat&logo=linkedin&logoColor=white&color=0D76A8)](https://www.linkedin.com/in/gagneet/)
 [![CodePen Badge](https://img.shields.io/badge/CodePen-Profile-informational?style=flat&logo=codepen&logoColor=white&color=black)](https://codepen.io/gagneet)
 
-[![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=gagneet)](https://github.com/gagneet)
+<div align="center">
+[![Gagneet's github stats](https://github-readme-stats.vercel.app/api?username=gagneet)](https://github.com/gagneet)
+<br />
+![Gagneet's GitHub activity graph](https://raw.githubusercontent.com/gagneet/gagneet/output/github-contribution-grid-snake-sissa.svg#gh-dark-mode-only)
+![Gagneet's GitHub activity graph](https://raw.githubusercontent.com/gagneet/gagneet/output/github-contribution-grid-snake-sissa-white.svg#gh-light-mode-only)
+</div>
+
+<div>
+    	<h2><img  width="35" src="https://emojis.slackmojis.com/emojis/images/1531847048/4223/blob-100.gif?1531847048" />Stats</h2>
+	<img  src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=gagneet&theme=github_dark&show_icons=true" />
+ 	<td><img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=gagneet&theme=tokyonight"  />
+</div>
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=gagneet&layout=compact)](https://github.com/gagneet)
 
