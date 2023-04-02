@@ -72,17 +72,24 @@ I love the entire process of developing and creating innovative ideas to be lazy
 [![LinkedIn Badge](https://img.shields.io/badge/LinkedIn-Profile-informational?style=flat&logo=linkedin&logoColor=white&color=0D76A8)](https://www.linkedin.com/in/gagneet/)
 [![CodePen Badge](https://img.shields.io/badge/CodePen-Profile-informational?style=flat&logo=codepen&logoColor=white&color=black)](https://codepen.io/gagneet)
 
-<div align="center">
-[![Gagneet's github stats](https://github-readme-stats.vercel.app/api?username=gagneet)](https://github.com/gagneet)
-<br />
+</br>
+
+[![Gagneet's Github stats](https://github-readme-stats.vercel.app/api?username=gagneet)](https://github.com/gagneet)
+
+</br>
+
 ![Gagneet's GitHub activity graph](https://raw.githubusercontent.com/gagneet/gagneet/output/github-contribution-grid-snake-sissa.svg#gh-dark-mode-only)
 ![Gagneet's GitHub activity graph](https://raw.githubusercontent.com/gagneet/gagneet/output/github-contribution-grid-snake-sissa-white.svg#gh-light-mode-only)
-</div>
+
 
 <div>
-    	<h2><img  width="35" src="https://emojis.slackmojis.com/emojis/images/1531847048/4223/blob-100.gif?1531847048" />Stats</h2>
+  <h2>
+		<img  width="35" src="https://emojis.slackmojis.com/emojis/images/1531847048/4223/blob-100.gif?1531847048" />
+		Stats
+	</h2>
 	<img  src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=gagneet&theme=github_dark&show_icons=true" />
- 	<td><img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=gagneet&theme=tokyonight"  />
+ 	<td>
+		<img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=gagneet&theme=tokyonight" />
 </div>
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=gagneet&layout=compact)](https://github.com/gagneet)
