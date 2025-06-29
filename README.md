@@ -1,91 +1,210 @@
-  <a href="http://gagneet.com/" target="_blank" rel="noreferrer"><img src="https://user-images.githubusercontent.com/203433/139530832-4c172386-ec46-4ccd-be70-f5e5056d3405.jpg" alt="gagneet banner"></a>
+<a href="http://gagneet.com/" target="_blank" rel="noreferrer"><img src="https://user-images.githubusercontent.com/203433/139530832-4c172386-ec46-4ccd-be70-f5e5056d3405.jpg" alt="gagneet banner"></a>
 
-## Hi there 👋
+## Hi there 👋 - I'm Gagneet Singh - DevOps & Test Automation Lead
 
 Let's Start with the Tech Blog & [Live Long and Prosper](http://gagneet.com/)
 
-### I'm an Automation, Performance and Sercuity testing expert 💻, Love publishing pics I took 📸, and an electronic hobbyist 🎨!
-
-> I love the entire process of developing and creating innovative ideas to be lazy.
+I'm a **DevOps and Test Automation Lead** with 20+ years of experience building scalable systems, leading enterprise automation initiatives, and driving innovation through efficient development practices. I'm an Automation, Performance and Security testing expert 💻, Love publishing pics I took 📸, and an electronic hobbyist 🎨!
 
 ---
 
-## 🤝 Connect with me:
+## 🚀 My Philosophy & Approach
 
-<a href="https://www.linkedin.com/in/gagneet/"><img src="https://img.shields.io/badge/-LinkedIn-0e76a8?style=plastic&logo=linkedIn" alt="Gagneet Singh | LinkedIn" width="125px"/></a>
-<a href="https://twitter.com/gagneet"><img src="https://img.shields.io/badge/-Twitter-1DA1F2?style=plastic&logo=Twitter" alt="Gagneet Singh | Twitter" width="125px"/></a>
-<a href="https://medium.com/@gagneet"><img src="https://img.shields.io/badge/-Instagram-833AB4?style=plastic&logo=Medium" alt="Gagneet Singh | Medium" width="125px"/></a>
+I believe in empowering teams through comprehensive automation strategies that span from infrastructure provisioning to security testing. My approach combines deep technical expertise in test automation with modern DevOps practices, focusing on creating resilient, scalable systems that enable rapid, secure deployments. I love the entire process of developing and creating innovative ideas to be lazy. Having worked across enterprise environments at Microsoft, Yahoo, Adobe, and Oracle, I bring a unique perspective on scaling automation across diverse technology stacks.
+
+---
+
+## 🛠️ Key Projects & Contributions
+
+### 🏥 Healthcare Platform Infrastructure Automation
+**Architected and deployed** a comprehensive Azure-based infrastructure for a health startup using Infrastructure as Code.
+- **Technologies:** Terraform, Azure, Docker, GitHub Actions, Let's Encrypt, Nginx
+- **Role:** Led end-to-end infrastructure design with network segmentation, managed databases (MySQL, Cosmos DB, Redis), and automated SSL certificate management.
+- **Impact:** Achieved HIPAA-compliant deployment pipeline with blue/green deployment capabilities and disaster recovery.
+- [Blog Post](https://thoughtsatwork.wordpress.com) | [Technical Deep Dive](#project-healthcare-deep-dive)
+
+### 🔧 Enterprise Test Automation Framework
+**Led development and implementation** of comprehensive automation testing frameworks across multiple enterprises.
+- **Technologies:** Cypress, Playwright, Selenium, React, React Native, Node.js
+- **Role:** Designed and built automation frameworks covering functional, performance, and security testing.
+- **Impact:** Reduced manual testing cycles by 70%, improved test coverage across web and mobile applications.
+- [Framework Documentation](#project-test-framework-docs) | [Implementation Guide](#project-test-framework-guide)
+
+### 🚀 Multi-Enterprise DevOps Transformation
+**Drove DevOps adoption** across various enterprises and startups in healthcare, finance, and technology sectors.
+- **Technologies:** CI/CD pipelines, Infrastructure as Code, Monitoring & Logging, Security Integration
+- **Role:** Led cross-functional teams in implementing modern DevOps practices and automation strategies.
+- **Impact:** Accelerated deployment frequency, improved system reliability, and reduced time-to-market.
+- [Case Studies](#project-devops-case-studies) | [Transformation Methodology](#project-devops-methodology)
+
+---
+
+## 🧰 My DevOps & Test Automation Toolbox
+
+### ☁️ Cloud Platforms & Infrastructure
+![Azure](https://img.shields.io/badge/azure-%230072C6.svg?style=for-the-badge&logo=microsoftazure&logoColor=white)
+![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
+![Terraform](https://img.shields.io/badge/terraform-%235835CC.svg?style=for-the-badge&logo=terraform&logoColor=white)
+
+### 🧪 Test Automation & Quality Engineering
+![Cypress](https://img.shields.io/badge/Cypress-17202C?style=for-the-badge&logo=cypress&logoColor=white)
+![Playwright](https://img.shields.io/badge/Playwright-2EAD33?style=for-the-badge&logo=playwright&logoColor=white)
+![Selenium](https://img.shields.io/badge/Selenium-43B02A?style=for-the-badge&logo=selenium&logoColor=white)
+
+### 🐳 Containerization & Orchestration
+![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
+![Kubernetes](https://img.shields.io/badge/kubernetes-%23326ce5.svg?style=for-the-badge&logo=kubernetes&logoColor=white)
+
+### 🔄 CI/CD & Automation
+![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white)
+![Jenkins](https://img.shields.io/badge/jenkins-%232C5263.svg?style=for-the-badge&logo=jenkins&logoColor=white)
+![Azure DevOps](https://img.shields.io/badge/Azure%20DevOps-0078D7?style=for-the-badge&logo=azure-devops&logoColor=white)
+
+### 💻 Programming Languages & Frameworks
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+
+### 🛡️ Security & Performance Testing
+![OWASP](https://img.shields.io/badge/OWASP-000000?style=for-the-badge&logo=owasp&logoColor=white)
+![JMeter](https://img.shields.io/badge/Apache%20JMeter-D22128?style=for-the-badge&logo=apache-jmeter&logoColor=white)
+
+### 🗄️ Databases & Storage
+![MySQL](https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
+![Redis](https://img.shields.io/badge/redis-%23DD0031.svg?style=for-the-badge&logo=redis&logoColor=white)
+
+### 🔧 Version Control & Collaboration
+![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
+![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
+
+---
+
+## 🎯 What I'm Currently Focusing On
+
+🔧 **Optimizing Infrastructure as Code** practices with Terraform for healthcare and enterprise environments.
+👥 **Mentoring teams** in modern test automation strategies using Cypress and Playwright.
+🛡️ **Advancing DevSecOps** practices with integrated security testing throughout the development lifecycle.
+📱 **Expanding mobile test automation** capabilities with React Native applications.
+
+---
+
+## 🌱 Continuous Learning
+
+📚 **Deepening expertise in advanced cloud security** patterns and compliance frameworks (HIPAA, SOC2).
+🎓 **Focusing on leadership development** for cross-functional team management and enterprise transformation.
+☁️ **Developing multi-cloud strategies** for enterprise-grade applications.
+🤖 **Exploring AI-powered testing** methodologies and automation enhancement.
+
+---
+
+## 🌟 Professional Highlights
+
+🏢 **Enterprise Experience:** Microsoft Corporation, Yahoo, Adobe, Oracle.
+🌏 **Global Leadership:** Tech lead positions across US, Australia, Switzerland, and India.
+🚀 **Entrepreneurship:** Co-founder & CTO at Skillsapien.com.
+🎓 **Education:** UNSW Business School background.
+📄 **Innovation:** Business methods patent filing for unique skill matching systems.
+
+---
+
+## 💡 Current Interests & Expertise
+
+- Test Automation projects with various enterprises and start-ups.
+- Health Care Web and Mobile App (React & React-Native).
+- NodeJS, React and Test Automation (using modern tools - Cypress, Playwright) skillsets.
+- Security & Performance Testing tools.
+- Infrastructure as Code and Cloud Architecture.
+- DevOps transformation and team leadership.
+
+---
+
+## 📝 Recent Blog Posts
+
+<!-- BLOG-POST-LIST:START -->
+- [Level Up Your AWS Deployments with Terraform and IaC: A Deep Dive into a Health Startup's Solution](https://thoughtsatwork.wordpress.com)
+- [Building Resilient Healthcare Infrastructure with Azure and Terraform](#blog-resilient-healthcare-infra)
+- [Modern Test Automation Strategies: From Cypress to Playwright](#blog-modern-test-automation)
+- [DevSecOps in Healthcare: Ensuring HIPAA Compliance Through Automation](#blog-devsecops-hipaa)
+<!-- BLOG-POST-LIST:END -->
+
+---
+
+## 📊 GitHub Stats & Activity
+
+<div align="center">
+
+![Metrics](https://metrics.lecoq.io/gagneet?template=classic&base=header%2C%20activity%2C%20community%2C%20repositories%2C%20metadata&base.indepth=false&base.hireable=false&base.skip=false&config.timezone=Australia%2FSydney)
+
+![GitHub Stats](https://github-readme-stats.vercel.app/api?username=gagneet&show_icons=true&theme=radical&hide_border=true&count_private=true)
+
+![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=gagneet&layout=compact&theme=radical&hide_border=true)
+
+![GitHub Streak](https://github-readme-streak-stats.herokuapp.com/?user=gagneet&theme=radical&hide_border=true)
+
+</div>
+
+### Activity Graph
+<p align="center">
+  <img src="https://github-readme-activity-graph.vercel.app/graph?username=gagneet&theme=radical&hide_border=true&custom_title=Contribution%20Activity" alt="Contribution Activity"/>
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/gagneet/gagneet/output/github-contribution-grid-snake-sissa.svg#gh-dark-mode-only" alt="GitHub Contribution Grid Snake (Dark Mode)" />
+  <img src="https://raw.githubusercontent.com/gagneet/gagneet/output/github-contribution-grid-snake-sissa-white.svg#gh-light-mode-only" alt="GitHub Contribution Grid Snake (Light Mode)" />
+</p>
+
+---
+
+## 🤝 Connect with me
+
+<p align="center">
+  <a href="https://www.linkedin.com/in/gagneet/"><img src="https://img.shields.io/badge/LinkedIn-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"/></a>
+  <a href="https://thoughtsatwork.wordpress.com"><img src="https://img.shields.io/badge/WordPress-21759B?style=for-the-badge&logo=wordpress&logoColor=white" alt="Blog"/></a>
+  <a href="http://gagneet.com/"><img src="https://img.shields.io/badge/Website-FF5722?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Website"/></a>
+  <a href="https://twitter.com/gagneet"><img src="https://img.shields.io/badge/Twitter-%231DA1F2.svg?style=for-the-badge&logo=Twitter&logoColor=white" alt="Twitter"/></a>
+</p>
 
 If you have any question/feedback, please do not hesitate to reach out to me!
 
 ---
-
-## 🔭 What I'm Working On
-
-- Test Automation projects with various enterprises and start-ups
-- Health Care Web and Mobile App (React & React-Native)
-- My blog about technology
-- My NodeJS, React and Test Automation (using modern tools - Cypress, Playwright) skillsets
-
----
-
-## 🌱 What I'm Learning
-- React framework
-- React Native 📱
-- Cypress framework
-- Security & Performance Testing tools
-- Next level of Cybrary certification
-
----
-
-## 🛠️ Technical Skills
-
-#### Code
-![](https://img.shields.io/badge/Code-React-informational?style=flat&logo=react&color=61DAFB) ![](https://img.shields.io/badge/Code-Redux-informational?style=flat&logo=Redux&color=764ABC) ![](https://img.shields.io/badge/Code-JavaScript-informational?style=flat&logo=JavaScript&color=F7DF1E) ![](https://img.shields.io/badge/Code-Ruby-informational?style=flat&logo=Ruby&color=CC342D) ![](https://img.shields.io/badge/Code-Ruby_on_Rails-informational?style=flat&logo=Ruby-On-Rails&color=CC0000) ![](https://img.shields.io/badge/Code-HTML5-informational?style=flat&logo=HTML5&color=E34F26) ![](https://img.shields.io/badge/Code-PostgreSQL-informational?style=flat&logo=PostgreSQL&color=336791) ![](https://img.shields.io/badge/Code-SQLite-informational?style=flat&logo=SQLite&color=003B57)
-
-#### Style
-![](https://img.shields.io/badge/Style-Bootstrap-informational?style=flat&logo=Bootstrap&color=7952B3) ![](https://img.shields.io/badge/Style-CSS3-informational?style=flat&logo=CSS3&color=1572B6) ![](https://img.shields.io/badge/Style-styled--components-informational?style=flat&logo=styled-components&color=DB7093)
-
-#### Tools
-![](https://img.shields.io/badge/Tools-Figma-informational?style=flat&logo=Figma&color=F24E1E) ![](https://img.shields.io/badge/Tools-NPM-informational?style=flat&logo=NPM&color=CB3837) ![](https://img.shields.io/badge/Tools-Heroku-informational?style=flat&logo=Heroku&color=430098) ![](https://img.shields.io/badge/Tools-Netlify-informational?style=flat&logo=netlify&color=00C7B7) ![](https://img.shields.io/badge/Tools-Git-informational?style=flat&logo=Git&color=F05032) ![](https://img.shields.io/badge/Tools-GitHub-informational?style=flat&logo=GitHub&color=181717)
-
----
-
-## 📝 Latest Blog Posts
-- [DevOps: Skillset, but with a new Mindset](https://medium.com/@gagneet/devops-skillset-but-with-a-new-mindset-ded3333da2d8)
-
----
-
-## 📊 GitHub Stats
-
-[![Twitter Badge](https://img.shields.io/badge/Twitter-Profile-informational?style=flat&logo=twitter&logoColor=white&color=1CA2F1)](https://twitter.com/gagneet)
-[![LinkedIn Badge](https://img.shields.io/badge/LinkedIn-Profile-informational?style=flat&logo=linkedin&logoColor=white&color=0D76A8)](https://www.linkedin.com/in/gagneet/)
-
-[![Gagneet's Github stats](https://github-readme-stats.vercel.app/api?username=gagneet)](https://github.com/gagneet)
-
-![Gagneet's GitHub activity graph](https://raw.githubusercontent.com/gagneet/gagneet/output/github-contribution-grid-snake-sissa.svg#gh-dark-mode-only)
-![Gagneet's GitHub activity graph](https://raw.githubusercontent.com/gagneet/gagneet/output/github-contribution-grid-snake-sissa-white.svg#gh-light-mode-only)
-
-### Stats
-<img  width="35" src="https://emojis.slackmojis.com/emojis/images/1531847048/4223/blob-100.gif?1531847048" />
-<img  src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=gagneet&theme=github_dark&show_icons=true" />
-<img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=gagneet&theme=tokyonight" />
-
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=gagneet&layout=compact)](https://github.com/gagneet)
-
-[![Visitors](https://visitor-badge.glitch.me/badge?page_id=gagneet.gagneet)](http://gagneet.com/)
+<p align="center">
+  ⭐️ From <a href="https://github.com/gagneet">gagneet</a>
+</p>
 
 <!--
-**gagneet/gagneet** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+Internal Links for Projects (Can be expanded later into separate files or detailed sections)
+<a name="project-healthcare-deep-dive"></a>
+### Project Deep Dive: Healthcare Platform Infrastructure (Placeholder)
+More details about the architecture, challenges, and solutions...
 
-Here are some ideas to get you started:
+<a name="project-test-framework-docs"></a>
+### Framework Docs: Enterprise Test Automation (Placeholder)
+Detailed documentation about the framework components...
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
+<a name="project-test-framework-guide"></a>
+### Implementation Guide: Enterprise Test Automation (Placeholder)
+Steps and best practices for implementing the framework...
+
+<a name="project-devops-case-studies"></a>
+### Case Studies: Multi-Enterprise DevOps Transformation (Placeholder)
+Examples of DevOps transformation projects...
+
+<a name="project-devops-methodology"></a>
+### Methodology: DevOps Transformation (Placeholder)
+Our approach to driving DevOps adoption...
+
+Internal Links for Blog Posts (If not external)
+<a name="blog-resilient-healthcare-infra"></a>
+### Blog: Resilient Healthcare Infrastructure (Placeholder)
+Content for this blog post...
+
+<a name="blog-modern-test-automation"></a>
+### Blog: Modern Test Automation Strategies (Placeholder)
+Content for this blog post...
+
+<a name="blog-devsecops-hipaa"></a>
+### Blog: DevSecOps in Healthcare (Placeholder)
+Content for this blog post...
 -->
