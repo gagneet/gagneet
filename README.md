@@ -14,6 +14,15 @@ I believe in empowering teams through comprehensive automation strategies that s
 
 ---
 
+## ✨ Guiding Principles
+
+- **"Automation Over Repetition"**: If a process can be automated, it should be. Manual work is technical debt waiting to happen.
+- **"Security by Design, Not by Chance"**: Security considerations must be integrated from architecture through deployment, not retrofitted later.
+- **"Fail Fast, Learn Faster"**: Embrace rapid feedback loops through comprehensive monitoring and observability to catch issues early when they're cheapest to fix.
+- **"People First, Tools Second"**: The best technology stack means nothing without empowered engineering teams who understand the why behind the what.
+
+---
+
 ## 🛠️ Key Projects & Contributions
 
 ### 🏥 Healthcare Platform Infrastructure Automation
@@ -99,6 +108,13 @@ I believe in empowering teams through comprehensive automation strategies that s
 
 ---
 
+## 🔬 Currently Exploring & Excited By
+
+- **AI-Assisted Code Generation & Architecture Design**: Leveraging large language models to accelerate development workflows and architectural decision-making, particularly for complex enterprise applications.
+- **GitOps for Enterprise Infrastructure**: Implementing declarative, Git-driven infrastructure and application management that meets enterprise compliance requirements while maintaining rapid deployment capabilities.
+
+---
+
 ## 🌟 Professional Highlights
 
 🏢 **Enterprise Experience:** Microsoft Corporation, Yahoo, Adobe, Oracle.
@@ -106,17 +122,6 @@ I believe in empowering teams through comprehensive automation strategies that s
 🚀 **Entrepreneurship:** Co-founder & CTO at Skillsapien.com.
 🎓 **Education:** UNSW Business School background.
 📄 **Innovation:** Business methods patent filing for unique skill matching systems.
-
----
-
-## 💡 Current Interests & Expertise
-
-- Test Automation projects with various enterprises and start-ups.
-- Health Care Web and Mobile App (React & React-Native).
-- NodeJS, React and Test Automation (using modern tools - Cypress, Playwright) skillsets.
-- Security & Performance Testing tools.
-- Infrastructure as Code and Cloud Architecture.
-- DevOps transformation and team leadership.
 
 ---
 
@@ -137,22 +142,19 @@ I believe in empowering teams through comprehensive automation strategies that s
 
 ![Metrics](https://metrics.lecoq.io/gagneet?template=classic&base=header%2C%20activity%2C%20community%2C%20repositories%2C%20metadata&base.indepth=false&base.hireable=false&base.skip=false&config.timezone=Australia%2FSydney)
 
-![GitHub Stats](https://github-readme-stats.vercel.app/api?username=gagneet&show_icons=true&theme=radical&hide_border=true&count_private=true)
-
-![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=gagneet&layout=compact&theme=radical&hide_border=true)
-
 ![GitHub Streak](https://github-readme-streak-stats.herokuapp.com/?user=gagneet&theme=radical&hide_border=true)
 
 </div>
 
-### Activity Graph
+<!--
+The standard GitHub contributions graph will be displayed by GitHub on the profile page below this README.
+The Vercel activity graph was removed to reduce clutter and avoid redundancy.
+The GitHub Stats (Main Card) and Top Languages card were removed as metrics.lecoq.io provides a comprehensive overview.
+-->
 <p align="center">
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username=gagneet&theme=radical&hide_border=true&custom_title=Contribution%20Activity" alt="Contribution Activity"/>
+  <!-- Intentionally left blank or can add a different single, high-impact visual later if desired -->
 </p>
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/gagneet/gagneet/output/github-contribution-grid-snake-sissa.svg#gh-dark-mode-only" alt="GitHub Contribution Grid Snake (Dark Mode)" />
-  <img src="https://raw.githubusercontent.com/gagneet/gagneet/output/github-contribution-grid-snake-sissa-white.svg#gh-light-mode-only" alt="GitHub Contribution Grid Snake (Light Mode)" />
 </p>
 
 ---
