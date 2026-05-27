@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script>
+        /* Theme init — prevents flash of wrong theme */
+        (function() {
+            var stored = localStorage.getItem('theme');
+            var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            var theme = stored || (prefersDark ? 'dark' : 'light');
+            if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+        })();
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -48,413 +57,1224 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        .gradient-bg { background: linear-gradient(135deg, #1e1b4b 0%, #312e81 40%, #4c1d95 100%); }
-        .gradient-text { background: linear-gradient(135deg, #a78bfa, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .card-hover { transition: all 0.3s ease; }
-        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.12); }
-        .tag-purple { background: #ede9fe; color: #5b21b6; }
-        .tag-blue { background: #dbeafe; color: #1e40af; }
-        .tag-green { background: #dcfce7; color: #15803d; }
-        .tag-orange { background: #ffedd5; color: #9a3412; }
-        .tag-pink { background: #fce7f3; color: #9d174d; }
-        .tag-teal { background: #ccfbf1; color: #0f766e; }
-        .role-badge { display: inline-flex; align-items: center; padding: 4px 12px; border-radius: 9999px; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.03em; }
-        .section-title::after { content: ''; display: block; width: 48px; height: 4px; background: linear-gradient(90deg, #7c3aed, #6366f1); border-radius: 2px; margin: 12px auto 0; }
+        /* ================================================================
+           THEME SYSTEM — CSS CUSTOM PROPERTIES
+        ================================================================ */
+        :root {
+            /* Light theme (default) */
+            --bg-primary:   #f8fafc;
+            --bg-secondary: #ffffff;
+            --bg-alt:       #f1f5f9;
+            --bg-card:      #ffffff;
+            --bg-nav:       rgba(255,255,255,0.88);
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted:   #94a3b8;
+            --border:       #e2e8f0;
+            --border-subtle: rgba(0,0,0,0.06);
+            --accent:       #7c3aed;
+            --accent-hover: #6d28d9;
+            --accent-light: #a78bfa;
+            --accent2:      #6366f1;
+            --shadow-sm:    0 1px 3px rgba(0,0,0,0.08);
+            --shadow-md:    0 4px 16px rgba(0,0,0,0.1);
+            --shadow-lg:    0 20px 40px rgba(0,0,0,0.12);
+            --grid-color:   rgba(0,0,0,0.05);
+            --orb1:         rgba(124,58,237,0.07);
+            --orb2:         rgba(99,102,241,0.05);
+        }
+        [data-theme="dark"] {
+            --bg-primary:   #080e1a;
+            --bg-secondary: #0f1829;
+            --bg-alt:       #111f35;
+            --bg-card:      #111f35;
+            --bg-nav:       rgba(8,14,26,0.9);
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted:   #64748b;
+            --border:       #1e3050;
+            --border-subtle: rgba(255,255,255,0.06);
+            --accent:       #a78bfa;
+            --accent-hover: #c4b5fd;
+            --accent-light: #c4b5fd;
+            --accent2:      #818cf8;
+            --shadow-sm:    0 1px 3px rgba(0,0,0,0.4);
+            --shadow-md:    0 4px 16px rgba(0,0,0,0.5);
+            --shadow-lg:    0 20px 40px rgba(0,0,0,0.7);
+            --grid-color:   rgba(255,255,255,0.04);
+            --orb1:         rgba(167,139,250,0.1);
+            --orb2:         rgba(129,140,248,0.07);
+        }
+
+        /* ================================================================
+           BASE
+        ================================================================ */
+        *, *::before, *::after { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            background-image:
+                linear-gradient(var(--grid-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: 44px 44px;
+            color: var(--text-primary);
+            transition: background-color 0.3s, color 0.3s;
+            min-height: 100vh;
+        }
+
+        /* ================================================================
+           NAVIGATION
+        ================================================================ */
+        #site-header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: var(--bg-nav);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-subtle);
+            transition: box-shadow 0.3s, background 0.3s;
+        }
+        #site-header.scrolled {
+            box-shadow: var(--shadow-md);
+            border-bottom-color: var(--border);
+        }
+        .nav-wrap {
+            max-width: 72rem;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-brand {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+        .nav-brand .brand-accent { color: var(--accent); }
+        .nav-links-desktop {
+            display: flex;
+            align-items: center;
+            gap: 0.125rem;
+        }
+        .nav-links-desktop a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 0.45rem 0.8rem;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: color 0.2s, background 0.2s;
+        }
+        .nav-links-desktop a:hover {
+            color: var(--accent);
+            background: var(--border-subtle);
+        }
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .icon-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 0.5rem;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.2s, border-color 0.2s, background 0.2s;
+        }
+        .icon-btn:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+        /* Theme toggle icons */
+        .icon-sun  { display: none; }
+        .icon-moon { display: block; }
+        [data-theme="dark"] .icon-sun  { display: block; }
+        [data-theme="dark"] .icon-moon { display: none; }
+        /* Mobile menu button */
+        #mobile-menu-btn { display: none; }
+        /* Mobile nav */
+        #mobile-nav {
+            display: none;
+            flex-direction: column;
+            gap: 0.2rem;
+            padding: 0.75rem 1.5rem 1rem;
+            border-top: 1px solid var(--border-subtle);
+            background: var(--bg-nav);
+            backdrop-filter: blur(20px);
+        }
+        #mobile-nav.open { display: flex; }
+        #mobile-nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 0.6rem 0.8rem;
+            border-radius: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s, background 0.2s;
+        }
+        #mobile-nav a:hover {
+            color: var(--accent);
+            background: var(--border-subtle);
+        }
+        @media (max-width: 768px) {
+            .nav-links-desktop { display: none; }
+            #mobile-menu-btn   { display: flex; }
+        }
+
+        /* ================================================================
+           HERO
+        ================================================================ */
+        .hero {
+            background: linear-gradient(140deg, #1e1b4b 0%, #2e2575 40%, #4c1d95 100%);
+            padding: 6rem 1.5rem 5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -160px; right: -120px;
+            width: 560px; height: 560px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(167,139,250,0.18) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -100px; left: -80px;
+            width: 400px; height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(99,102,241,0.12) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .hero-inner {
+            max-width: 46rem;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            animation: hero-enter 0.7s ease both;
+        }
+        @keyframes hero-enter {
+            from { opacity: 0; transform: translateY(18px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.35rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-family: 'JetBrains Mono', monospace;
+            background: rgba(167,139,250,0.15);
+            border: 1px solid rgba(167,139,250,0.35);
+            color: #c4b5fd;
+            margin-bottom: 1.75rem;
+        }
+        .hero-badge-dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: #a78bfa;
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+        @keyframes pulse-dot {
+            0%,100% { opacity: 1; transform: scale(1); }
+            50%      { opacity: 0.4; transform: scale(0.7); }
+        }
+        .hero-avatar {
+            width: 96px; height: 96px;
+            border-radius: 50%;
+            border: 3px solid rgba(167,139,250,0.5);
+            box-shadow: 0 0 0 6px rgba(167,139,250,0.12), var(--shadow-lg);
+            margin: 0 auto 1.75rem;
+            display: block;
+        }
+        .hero-name {
+            font-size: clamp(2.4rem,6vw,3.8rem);
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+        .hero-name .text-gradient {
+            background: linear-gradient(135deg, #a78bfa 0%, #818cf8 50%, #60a5fa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-roles {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .role-pill {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.35rem 0.875rem;
+            border-radius: 9999px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+        }
+        .rp-violet { background: rgba(167,139,250,0.18); border: 1px solid rgba(167,139,250,0.4); color: #c4b5fd; }
+        .rp-indigo { background: rgba(129,140,248,0.18); border: 1px solid rgba(129,140,248,0.4); color: #a5b4fc; }
+        .rp-purple { background: rgba(192,132,252,0.18); border: 1px solid rgba(192,132,252,0.4); color: #e9d5ff; }
+        .hero-desc {
+            font-size: 1.1rem;
+            color: rgba(203,213,225,0.9);
+            line-height: 1.75;
+            max-width: 34rem;
+            margin: 0 auto 2.5rem;
+        }
+        .hero-cta {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.875rem;
+        }
+        .btn-hero-primary {
+            background: #fff;
+            color: #5b21b6;
+            padding: 0.75rem 1.75rem;
+            border-radius: 0.625rem;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            transition: all 0.2s;
+            border: 2px solid #fff;
+        }
+        .btn-hero-primary:hover {
+            background: #ede9fe;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(255,255,255,0.2);
+        }
+        .btn-hero-outline {
+            background: transparent;
+            color: #fff;
+            padding: 0.75rem 1.75rem;
+            border-radius: 0.625rem;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            transition: all 0.2s;
+            border: 2px solid rgba(255,255,255,0.55);
+        }
+        .btn-hero-outline:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: #fff;
+            transform: translateY(-2px);
+        }
+
+        /* ================================================================
+           SECTIONS
+        ================================================================ */
+        .section { padding: 5rem 1.5rem; }
+        .section-alt { background: var(--bg-alt); }
+        .container { max-width: 72rem; margin: 0 auto; }
+        .section-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 0.6rem;
+        }
+        .section-title {
+            font-size: clamp(1.75rem, 4vw, 2.4rem);
+            font-weight: 800;
+            color: var(--text-primary);
+            letter-spacing: -0.025em;
+            line-height: 1.2;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 36px; height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent2));
+            border-radius: 2px;
+            margin: 0.8rem auto 0;
+        }
+        .section-header { text-align: center; margin-bottom: 3.5rem; }
+        .section-header-left { text-align: left; margin-bottom: 2.5rem; }
+        .section-header-left .section-title::after { margin: 0.8rem 0 0; }
+        .section-desc {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            line-height: 1.75;
+            max-width: 40rem;
+            margin: 0.75rem auto 0;
+        }
+
+        /* ================================================================
+           FEATURE CARDS (What I Do)
+        ================================================================ */
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 2rem;
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--accent);
+        }
+        .ficon {
+            width: 3rem; height: 3rem;
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.25rem;
+        }
+        .ficon-violet  { background: linear-gradient(135deg,#7c3aed,#6d28d9); }
+        .ficon-blue    { background: linear-gradient(135deg,#2563eb,#1d4ed8); }
+        .ficon-emerald { background: linear-gradient(135deg,#059669,#047857); }
+        .feature-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.6rem;
+        }
+        .feature-desc {
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+            line-height: 1.7;
+        }
+
+        /* ================================================================
+           TAGS
+        ================================================================ */
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.22rem 0.6rem;
+            border-radius: 9999px;
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            border: 1px solid transparent;
+        }
+        /* Dark-mode defaults */
+        .tag-violet { background:rgba(167,139,250,.15); color:#c4b5fd; border-color:rgba(167,139,250,.25); }
+        .tag-blue   { background:rgba( 96,165,250,.12); color:#93c5fd; border-color:rgba( 96,165,250,.2); }
+        .tag-green  { background:rgba( 52,211,153,.12); color:#6ee7b7; border-color:rgba( 52,211,153,.2); }
+        .tag-orange { background:rgba(251,146, 60,.12); color:#fdba74; border-color:rgba(251,146, 60,.2); }
+        .tag-pink   { background:rgba(244,114,182,.12); color:#f9a8d4; border-color:rgba(244,114,182,.2); }
+        .tag-teal   { background:rgba( 45,212,191,.12); color:#5eead4; border-color:rgba( 45,212,191,.2); }
+        /* Light-mode overrides */
+        [data-theme="light"] .tag-violet,
+        :root:not([data-theme="dark"]) .tag-violet { background:#ede9fe; color:#5b21b6; border-color:#ddd6fe; }
+        [data-theme="light"] .tag-blue,
+        :root:not([data-theme="dark"]) .tag-blue   { background:#dbeafe; color:#1e40af; border-color:#bfdbfe; }
+        [data-theme="light"] .tag-green,
+        :root:not([data-theme="dark"]) .tag-green  { background:#dcfce7; color:#15803d; border-color:#bbf7d0; }
+        [data-theme="light"] .tag-orange,
+        :root:not([data-theme="dark"]) .tag-orange { background:#ffedd5; color:#9a3412; border-color:#fed7aa; }
+        [data-theme="light"] .tag-pink,
+        :root:not([data-theme="dark"]) .tag-pink   { background:#fce7f3; color:#9d174d; border-color:#fbcfe8; }
+        [data-theme="light"] .tag-teal,
+        :root:not([data-theme="dark"]) .tag-teal   { background:#ccfbf1; color:#0f766e; border-color:#99f6e4; }
+
+        /* ================================================================
+           TECH STACK PILLS
+        ================================================================ */
+        .tech-pill {
+            padding: 0.45rem 1rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            font-size: 0.83rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            transition: all 0.2s;
+            cursor: default;
+        }
+        .tech-pill:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* ================================================================
+           PRINCIPLES
+        ================================================================ */
+        .principle {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        .principle-dot {
+            flex-shrink: 0;
+            width: 2rem; height: 2rem;
+            background: rgba(167,139,250,0.12);
+            border: 1px solid rgba(167,139,250,0.28);
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 0.1rem;
+        }
+        .principle-dot::after {
+            content: '';
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+        .principle-head { font-weight: 600; font-size: 0.93rem; color: var(--text-primary); }
+        .principle-body { font-size: 0.86rem; color: var(--text-secondary); line-height: 1.65; margin-top: 0.2rem; }
+
+        /* ================================================================
+           PROJECT CARDS
+        ================================================================ */
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--accent);
+        }
+        .project-header { padding: 1.75rem 1.75rem 1.25rem; }
+        .project-header-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.875rem;
+        }
+        .project-preview {
+            width: 100%; height: 10rem;
+            object-fit: cover;
+            border-radius: 0.625rem;
+            opacity: 0.88;
+        }
+        .project-body {
+            padding: 1.5rem 1.75rem 1.75rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.625rem;
+        }
+        .project-desc {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            flex: 1;
+            margin-bottom: 1.125rem;
+        }
+        .project-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.55rem 1.1rem;
+            border-radius: 0.5rem;
+            font-size: 0.83rem;
+            font-weight: 600;
+            color: #fff;
+            text-decoration: none;
+            transition: opacity 0.2s, transform 0.2s;
+            align-self: flex-start;
+            border: none;
+        }
+        .project-cta:hover { opacity: 0.88; transform: translateY(-1px); }
+        .project-header-tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.22rem 0.625rem;
+            border-radius: 9999px;
+            font-size: 0.68rem;
+            font-weight: 600;
+            background: rgba(255,255,255,0.18);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: #fff;
+        }
+        .project-header-sub { font-size: 0.78rem; color: rgba(255,255,255,0.65); }
+
+        /* ================================================================
+           COMPANY CARDS
+        ================================================================ */
+        .company-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            padding: 1.25rem 1rem;
+            text-align: center;
+            transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+        }
+        .company-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--accent);
+        }
+        .company-name { font-size: 1.15rem; font-weight: 800; color: var(--accent); }
+        .company-role { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem; font-weight: 500; }
+
+        /* ================================================================
+           STATS BANNER
+        ================================================================ */
+        .stats-banner {
+            background: linear-gradient(135deg,#1e1b4b 0%,#312e81 50%,#4c1d95 100%);
+            border-radius: 1.25rem;
+            padding: 2.5rem;
+        }
+        [data-theme="dark"] .stats-banner {
+            background: linear-gradient(135deg,#0c0a2e 0%,#1a1760 50%,#25085e 100%);
+        }
+        .stat-num  { font-size: 2.4rem; font-weight: 800; color: #fff; letter-spacing: -0.02em; }
+        .stat-lbl  { font-size: 0.8rem; color: #c4b5fd; font-weight: 500; margin-top: 0.2rem; }
+
+        /* ================================================================
+           CONTACT BUTTONS
+        ================================================================ */
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            padding: 0.875rem 1.875rem;
+            border-radius: 0.75rem;
+            font-size: 0.93rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+            border: 2px solid transparent;
+        }
+        .cta-primary {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+        }
+        .cta-primary:hover {
+            background: var(--accent-hover);
+            border-color: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(124,58,237,0.35);
+        }
+        .cta-outline {
+            background: transparent;
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+        .cta-outline:hover {
+            background: var(--accent);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+        .cta-ghost {
+            background: transparent;
+            color: var(--text-secondary);
+            border-color: var(--border);
+        }
+        .cta-ghost:hover {
+            color: var(--text-primary);
+            border-color: var(--text-primary);
+            transform: translateY(-2px);
+        }
+
+        /* ================================================================
+           FOOTER
+        ================================================================ */
+        .footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            padding: 3rem 1.5rem 2rem;
+        }
+        .footer-grid {
+            max-width: 72rem;
+            margin: 0 auto 2.5rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 2rem;
+        }
+        @media(max-width:768px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+        @media(max-width:480px) { .footer-grid { grid-template-columns: 1fr; } }
+        .footer-brand-name {
+            font-size: 1rem; font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+        .footer-brand-desc { font-size: 0.83rem; color: var(--text-muted); line-height: 1.65; max-width: 22rem; }
+        .footer-col h4 {
+            font-size: 0.72rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.1em;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .footer-col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.5rem; }
+        .footer-col ul a { font-size: 0.83rem; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+        .footer-col ul a:hover { color: var(--accent); }
+        .footer-bottom {
+            max-width: 72rem; margin: 0 auto;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-subtle);
+            display: flex; align-items: center; justify-content: space-between;
+            font-size: 0.78rem; color: var(--text-muted);
+        }
+        .footer-social { display: flex; gap: 0.75rem; }
+        .footer-social a { color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+        .footer-social a:hover { color: var(--accent); }
+
+        /* ================================================================
+           SCROLL REVEAL
+        ================================================================ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(22px);
+            transition: opacity 0.55s ease, transform 0.55s ease;
+        }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal-d1 { transition-delay: 0.1s; }
+        .reveal-d2 { transition-delay: 0.2s; }
+        .reveal-d3 { transition-delay: 0.3s; }
     </style>
 </head>
-<body class="bg-gray-50">
+<body>
 
-    <!-- Navigation -->
-    <nav class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <div class="flex-shrink-0">
-                    <span class="text-xl font-bold text-gray-900">Gagneet Singh</span>
-                </div>
-                <div class="hidden md:flex items-baseline space-x-1">
-                    <a href="#about" class="text-gray-500 hover:text-violet-700 px-3 py-2 rounded-md text-sm font-medium transition">About</a>
-                    <a href="#projects" class="text-gray-500 hover:text-violet-700 px-3 py-2 rounded-md text-sm font-medium transition">Projects</a>
-                    <a href="#experience" class="text-gray-500 hover:text-violet-700 px-3 py-2 rounded-md text-sm font-medium transition">Experience</a>
-                    <a href="#contact" class="text-gray-500 hover:text-violet-700 px-3 py-2 rounded-md text-sm font-medium transition">Contact</a>
-                </div>
-            </div>
+<!-- =====================================================================
+     NAVIGATION
+====================================================================== -->
+<header id="site-header">
+    <div class="nav-wrap">
+        <a href="#" class="nav-brand">Gagneet <span class="brand-accent">Singh</span></a>
+        <div class="nav-links-desktop">
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#experience">Experience</a>
+            <a href="#contact">Contact</a>
         </div>
+        <div class="nav-right">
+            <button id="theme-toggle" class="icon-btn" aria-label="Toggle theme">
+                <svg class="icon-sun" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="5"/><path stroke-linecap="round" d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                </svg>
+                <svg class="icon-moon" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+            </button>
+            <button id="mobile-menu-btn" class="icon-btn" aria-label="Open menu">
+                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+    <nav id="mobile-nav">
+        <a href="#about"      onclick="closeMobileNav()">About</a>
+        <a href="#projects"   onclick="closeMobileNav()">Projects</a>
+        <a href="#experience" onclick="closeMobileNav()">Experience</a>
+        <a href="#contact"    onclick="closeMobileNav()">Contact</a>
     </nav>
+</header>
 
-    <!-- Hero Section -->
-    <section class="gradient-bg text-white py-24">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div class="flex justify-center mb-8">
-                <img src="src/robot.gif" alt="Gagneet Singh" class="w-24 h-24 rounded-full border-4 border-violet-400 shadow-xl">
-            </div>
-            <h1 class="text-4xl md:text-6xl font-extrabold mb-4 tracking-tight">Gagneet Singh</h1>
-            <div class="flex flex-wrap justify-center gap-3 mb-8">
-                <span class="role-badge bg-violet-500 bg-opacity-30 text-violet-200 border border-violet-400">Technical Product Manager</span>
-                <span class="role-badge bg-indigo-500 bg-opacity-30 text-indigo-200 border border-indigo-400">Principal / Staff Engineer</span>
-                <span class="role-badge bg-purple-500 bg-opacity-30 text-purple-200 border border-purple-400">Full-Stack Developer</span>
-            </div>
-            <p class="text-lg md:text-xl max-w-3xl mx-auto mb-10 text-indigo-200 leading-relaxed">
-                20+ years bridging product strategy and engineering execution — defining roadmaps, architecting scalable systems,
-                and shipping full-stack products trusted by enterprise teams worldwide.
-            </p>
-            <div class="flex flex-wrap justify-center gap-4">
-                <a href="#projects" class="bg-white text-violet-700 px-8 py-3 rounded-lg font-semibold hover:bg-violet-50 transition shadow-lg">View Projects</a>
-                <a href="#contact" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-violet-700 transition">Get In Touch</a>
-            </div>
+<!-- =====================================================================
+     HERO
+====================================================================== -->
+<section class="hero">
+    <div class="hero-inner">
+        <div class="hero-badge">
+            <span class="hero-badge-dot"></span>
+            Available for senior roles
         </div>
-    </section>
-
-    <!-- What I Do -->
-    <section id="about" class="py-20 bg-white">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 section-title">What I Do</h2>
-                <p class="mt-6 text-xl text-gray-600 max-w-3xl mx-auto">
-                    I operate at the intersection of product, engineering, and delivery — turning ambiguous problems
-                    into working software that creates real business value.
-                </p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-gradient-to-br from-violet-50 to-indigo-50 rounded-2xl p-8 border border-violet-100 card-hover">
-                    <div class="w-12 h-12 bg-violet-600 rounded-xl flex items-center justify-center mb-6">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Technical Product Management</h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        Defining product vision, prioritising roadmaps, and aligning engineering capacity with business outcomes.
-                        Deep enough technically to challenge architecture decisions, pragmatic enough to ship.
-                    </p>
-                    <div class="mt-4 flex flex-wrap gap-2">
-                        <span class="px-2 py-1 text-xs font-medium tag-purple rounded-full">Roadmapping</span>
-                        <span class="px-2 py-1 text-xs font-medium tag-purple rounded-full">Stakeholder Mgmt</span>
-                        <span class="px-2 py-1 text-xs font-medium tag-purple rounded-full">Agile / Scrum</span>
-                    </div>
-                </div>
-
-                <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-8 border border-blue-100 card-hover">
-                    <div class="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center mb-6">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Principal / Staff Engineering</h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        Designing distributed systems and cloud-native architectures that scale. Leading technical direction,
-                        setting engineering standards, and mentoring senior engineers across cross-functional teams.
-                    </p>
-                    <div class="mt-4 flex flex-wrap gap-2">
-                        <span class="px-2 py-1 text-xs font-medium tag-blue rounded-full">System Design</span>
-                        <span class="px-2 py-1 text-xs font-medium tag-blue rounded-full">Cloud Architecture</span>
-                        <span class="px-2 py-1 text-xs font-medium tag-blue rounded-full">Tech Leadership</span>
-                    </div>
-                </div>
-
-                <div class="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-2xl p-8 border border-emerald-100 card-hover">
-                    <div class="w-12 h-12 bg-emerald-600 rounded-xl flex items-center justify-center mb-6">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Full-Stack Development</h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        Hands-on development from database schema to pixel-perfect UI. Building production applications
-                        with Next.js, React, Node.js, PostgreSQL, and modern DevOps pipelines.
-                    </p>
-                    <div class="mt-4 flex flex-wrap gap-2">
-                        <span class="px-2 py-1 text-xs font-medium tag-green rounded-full">Next.js / React</span>
-                        <span class="px-2 py-1 text-xs font-medium tag-green rounded-full">Node.js</span>
-                        <span class="px-2 py-1 text-xs font-medium tag-green rounded-full">PostgreSQL</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Principles -->
-            <div class="mt-16 grid md:grid-cols-2 gap-12 items-center">
-                <div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-8">Guiding Principles</h3>
-                    <div class="space-y-6">
-                        <div class="flex items-start gap-4">
-                            <div class="flex-shrink-0 w-8 h-8 bg-violet-100 rounded-lg flex items-center justify-center mt-0.5">
-                                <div class="w-2 h-2 bg-violet-600 rounded-full"></div>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-gray-900">"Ship value, not features"</h4>
-                                <p class="text-gray-600 mt-1">Every engineering decision should trace back to a measurable user or business outcome.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-4">
-                            <div class="flex-shrink-0 w-8 h-8 bg-violet-100 rounded-lg flex items-center justify-center mt-0.5">
-                                <div class="w-2 h-2 bg-violet-600 rounded-full"></div>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-gray-900">"Automation over repetition"</h4>
-                                <p class="text-gray-600 mt-1">If a process can be automated, it should be. Manual work is technical debt waiting to happen.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-4">
-                            <div class="flex-shrink-0 w-8 h-8 bg-violet-100 rounded-lg flex items-center justify-center mt-0.5">
-                                <div class="w-2 h-2 bg-violet-600 rounded-full"></div>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-gray-900">"Security by design, not by chance"</h4>
-                                <p class="text-gray-600 mt-1">Security must be baked into architecture from day one — not retrofitted after an incident.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex justify-center">
-                    <img src="src/panda.gif" alt="Engineering illustration" class="w-64 h-64 rounded-2xl shadow-lg">
-                </div>
-            </div>
+        <img src="src/robot.gif" alt="Gagneet Singh" class="hero-avatar">
+        <h1 class="hero-name">Gagneet <span class="text-gradient">Singh</span></h1>
+        <div class="hero-roles">
+            <span class="role-pill rp-violet">Technical Product Manager</span>
+            <span class="role-pill rp-indigo">Principal / Staff Engineer</span>
+            <span class="role-pill rp-purple">Full-Stack Developer</span>
         </div>
-    </section>
-
-    <!-- Tech Stack -->
-    <section class="py-12 bg-gray-50 border-y border-gray-100">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <p class="text-center text-sm font-semibold text-gray-400 uppercase tracking-widest mb-8">Core Technology Stack</p>
-            <div class="flex flex-wrap justify-center gap-3">
-                <span class="px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-medium text-gray-700 shadow-sm">Next.js</span>
-                <span class="px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-medium text-gray-700 shadow-sm">React</span>
-                <span class="px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-medium text-gray-700 shadow-sm">Node.js</span>
-                <span class="px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-medium text-gray-700 shadow-sm">TypeScript</span>
-                <span class="px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-medium text-gray-700 shadow-sm">PostgreSQL</span>
-                <span class="px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-medium text-gray-700 shadow-sm">Python</span>
-                <span class="px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-medium text-gray-700 shadow-sm">AWS</span>
-                <span class="px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-medium text-gray-700 shadow-sm">Docker</span>
-                <span class="px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-medium text-gray-700 shadow-sm">Kubernetes</span>
-                <span class="px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-medium text-gray-700 shadow-sm">Terraform</span>
-                <span class="px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-medium text-gray-700 shadow-sm">CI/CD</span>
-                <span class="px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-medium text-gray-700 shadow-sm">Nginx</span>
-                <span class="px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-medium text-gray-700 shadow-sm">Redis</span>
-                <span class="px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-medium text-gray-700 shadow-sm">GraphQL</span>
-            </div>
+        <p class="hero-desc">
+            20+ years bridging product strategy and engineering execution — defining roadmaps,
+            architecting scalable systems, and shipping full-stack products trusted by enterprise teams worldwide.
+        </p>
+        <div class="hero-cta">
+            <a href="#projects" class="btn-hero-primary">
+                View Projects
+                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </a>
+            <a href="#contact" class="btn-hero-outline">Get In Touch</a>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="py-20 bg-white">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 section-title">Live Projects</h2>
-                <p class="mt-6 text-xl text-gray-600">Production applications I've built and currently operate</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-8">
-
-                <!-- SkillSapien -->
-                <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden card-hover">
-                    <div class="bg-gradient-to-br from-violet-600 to-indigo-700 p-8">
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="px-3 py-1 bg-white bg-opacity-20 text-white text-xs font-semibold rounded-full">AI · SaaS · EdTech</span>
-                            <span class="text-white text-sm opacity-75">10,000+ professionals</span>
-                        </div>
-                        <img src="src/1.gif" alt="SkillSapien Platform" class="w-full h-40 object-cover rounded-lg opacity-90">
-                    </div>
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold text-gray-900 mb-3">SkillSapien</h3>
-                        <p class="text-gray-600 mb-6 leading-relaxed">
-                            AI-powered career development platform that gamifies professional growth. Features intelligent
-                            job matching, CV-to-profile parsing, interactive courses, real-time skill tracking, and expert
-                            mentorship — engaging professionals across multiple regions.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="px-3 py-1 text-xs font-medium tag-purple rounded-full">Next.js</span>
-                            <span class="px-3 py-1 text-xs font-medium tag-blue rounded-full">AI / ML</span>
-                            <span class="px-3 py-1 text-xs font-medium tag-green rounded-full">Node.js</span>
-                            <span class="px-3 py-1 text-xs font-medium tag-teal rounded-full">PostgreSQL</span>
-                            <span class="px-3 py-1 text-xs font-medium tag-orange rounded-full">Gamification</span>
-                        </div>
-                        <a href="https://skillsapien.com" target="_blank" rel="noopener"
-                           class="inline-flex items-center gap-2 bg-violet-600 text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-violet-700 transition text-sm">
-                            Visit SkillSapien
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- East Gate Residences -->
-                <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden card-hover">
-                    <div class="bg-gradient-to-br from-emerald-600 to-teal-700 p-8">
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="px-3 py-1 bg-white bg-opacity-20 text-white text-xs font-semibold rounded-full">PropTech · SaaS · AU/NZ</span>
-                            <span class="text-white text-sm opacity-75">Strata Management</span>
-                        </div>
-                        <img src="src/2.gif" alt="East Gate Residences Platform" class="w-full h-40 object-cover rounded-lg opacity-90">
-                    </div>
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold text-gray-900 mb-3">East Gate Residences</h3>
-                        <p class="text-gray-600 mb-6 leading-relaxed">
-                            Comprehensive strata management and community engagement platform serving residential
-                            communities across Australia and New Zealand. Streamlines property management with digital
-                            document access, resident marketplace, community communications, and event coordination.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="px-3 py-1 text-xs font-medium tag-green rounded-full">Next.js</span>
-                            <span class="px-3 py-1 text-xs font-medium tag-teal rounded-full">Node.js</span>
-                            <span class="px-3 py-1 text-xs font-medium tag-blue rounded-full">PostgreSQL</span>
-                            <span class="px-3 py-1 text-xs font-medium tag-orange rounded-full">Multi-tenancy</span>
-                            <span class="px-3 py-1 text-xs font-medium tag-pink rounded-full">Docker</span>
-                        </div>
-                        <a href="https://eastgateresidences.com.au" target="_blank" rel="noopener"
-                           class="inline-flex items-center gap-2 bg-emerald-600 text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-emerald-700 transition text-sm">
-                            Visit East Gate Residences
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Healthcare App -->
-                <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden card-hover">
-                    <div class="bg-gradient-to-br from-blue-600 to-cyan-700 p-8">
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="px-3 py-1 bg-white bg-opacity-20 text-white text-xs font-semibold rounded-full">HealthTech · Full-Stack</span>
-                        </div>
-                        <img src="src/panda.gif" alt="Healthcare Management System" class="w-full h-40 object-cover rounded-lg opacity-90">
-                    </div>
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Healthcare Management System</h3>
-                        <p class="text-gray-600 mb-6 leading-relaxed">
-                            Full-stack Next.js application with comprehensive patient management, appointment scheduling,
-                            and clinical workflows. Built with modern React, PostgreSQL, and containerised deployment
-                            on a cloud-native infrastructure.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="px-3 py-1 text-xs font-medium tag-blue rounded-full">Next.js</span>
-                            <span class="px-3 py-1 text-xs font-medium tag-green rounded-full">PostgreSQL</span>
-                            <span class="px-3 py-1 text-xs font-medium tag-purple rounded-full">Docker</span>
-                        </div>
-                        <a href="https://healthapp.gagneet.com" target="_blank" rel="noopener"
-                           class="inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-blue-700 transition text-sm">
-                            View Live App
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Retirement Calculator -->
-                <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden card-hover">
-                    <div class="bg-gradient-to-br from-amber-500 to-orange-600 p-8">
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="px-3 py-1 bg-white bg-opacity-20 text-white text-xs font-semibold rounded-full">FinTech · Calculator</span>
-                        </div>
-                        <img src="src/robot.gif" alt="Retirement Calculator" class="w-full h-40 object-cover rounded-lg opacity-90">
-                    </div>
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Australian Retirement Calculator</h3>
-                        <p class="text-gray-600 mb-6 leading-relaxed">
-                            Advanced retirement planning tool with superannuation modelling, healthcare cost projections,
-                            aged care planning, and dynamic investment allocation strategies tailored for the Australian
-                            financial system.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="px-3 py-1 text-xs font-medium tag-orange rounded-full">JavaScript</span>
-                            <span class="px-3 py-1 text-xs font-medium tag-pink rounded-full">Chart.js</span>
-                            <span class="px-3 py-1 text-xs font-medium tag-blue rounded-full">Financial Modelling</span>
-                        </div>
-                        <a href="https://retirement.gagneet.com" target="_blank" rel="noopener"
-                           class="inline-flex items-center gap-2 bg-amber-600 text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-amber-700 transition text-sm">
-                            Try Calculator
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                        </a>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience" class="py-20 bg-gray-50">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 section-title">Enterprise Experience</h2>
-                <p class="mt-6 text-xl text-gray-600">Trusted by leading technology organisations worldwide</p>
-            </div>
-
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
-                <div class="bg-white rounded-xl p-6 text-center shadow-sm border border-gray-100 card-hover">
-                    <div class="text-2xl font-extrabold text-violet-700 mb-1">Microsoft</div>
-                    <p class="text-sm text-gray-500">Enterprise Automation</p>
-                </div>
-                <div class="bg-white rounded-xl p-6 text-center shadow-sm border border-gray-100 card-hover">
-                    <div class="text-2xl font-extrabold text-violet-700 mb-1">Yahoo</div>
-                    <p class="text-sm text-gray-500">Performance Engineering</p>
-                </div>
-                <div class="bg-white rounded-xl p-6 text-center shadow-sm border border-gray-100 card-hover">
-                    <div class="text-2xl font-extrabold text-violet-700 mb-1">Adobe</div>
-                    <p class="text-sm text-gray-500">Quality Engineering</p>
-                </div>
-                <div class="bg-white rounded-xl p-6 text-center shadow-sm border border-gray-100 card-hover">
-                    <div class="text-2xl font-extrabold text-violet-700 mb-1">Oracle</div>
-                    <p class="text-sm text-gray-500">DevOps Leadership</p>
-                </div>
-            </div>
-
-            <!-- Stats -->
-            <div class="bg-gradient-to-br from-violet-600 to-indigo-700 rounded-2xl p-10 text-white">
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                    <div>
-                        <div class="text-4xl font-extrabold mb-2">20+</div>
-                        <div class="text-violet-200 text-sm font-medium">Years Experience</div>
-                    </div>
-                    <div>
-                        <div class="text-4xl font-extrabold mb-2">4</div>
-                        <div class="text-violet-200 text-sm font-medium">Live SaaS Products</div>
-                    </div>
-                    <div>
-                        <div class="text-4xl font-extrabold mb-2">10K+</div>
-                        <div class="text-violet-200 text-sm font-medium">Platform Users</div>
-                    </div>
-                    <div>
-                        <div class="text-4xl font-extrabold mb-2">50+</div>
-                        <div class="text-violet-200 text-sm font-medium">Engineers Mentored</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-white">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6 section-title">Let's Connect</h2>
-            <p class="text-xl text-gray-600 mb-12 mt-6">
-                Open to senior engineering leadership, technical product management, and advisory roles.
-                Also happy to chat about architecture, product strategy, or side projects.
-            </p>
-
-            <div class="flex flex-wrap justify-center gap-4">
-                <a href="mailto:gagneet@gagneet.com"
-                   class="inline-flex items-center gap-2 bg-violet-600 text-white px-8 py-4 rounded-xl font-semibold hover:bg-violet-700 transition shadow-lg">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                    Email Me
-                </a>
-                <a href="https://linkedin.com/in/gagneet" target="_blank" rel="noopener"
-                   class="inline-flex items-center gap-2 border-2 border-violet-600 text-violet-600 px-8 py-4 rounded-xl font-semibold hover:bg-violet-600 hover:text-white transition">
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                    LinkedIn
-                </a>
-                <a href="https://github.com/gagneet" target="_blank" rel="noopener"
-                   class="inline-flex items-center gap-2 border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-xl font-semibold hover:border-gray-800 hover:text-gray-900 transition">
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                    GitHub
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-gray-400 py-10">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p class="font-semibold text-white mb-2">Gagneet Singh</p>
-            <p class="text-sm mb-4">Technical Product Manager · Principal / Staff Engineer · Full-Stack Developer</p>
-            <p class="text-xs text-gray-500">
-                &copy; 2026 Gagneet Singh. Building products that matter.
+<!-- =====================================================================
+     WHAT I DO
+====================================================================== -->
+<section id="about" class="section">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-label">What I Do</span>
+            <h2 class="section-title">Product × Engineering × Delivery</h2>
+            <p class="section-desc">
+                I operate at the intersection of product, engineering, and delivery — turning ambiguous problems
+                into working software that creates real business value.
             </p>
         </div>
-    </footer>
+
+        <div class="grid md:grid-cols-3 gap-6 mb-16">
+            <div class="feature-card reveal">
+                <div class="ficon ficon-violet">
+                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                </div>
+                <div class="feature-title">Technical Product Management</div>
+                <div class="feature-desc">
+                    Defining product vision, prioritising roadmaps, and aligning engineering capacity with business outcomes.
+                    Deep enough technically to challenge architecture decisions, pragmatic enough to ship.
+                </div>
+                <div class="flex flex-wrap gap-2 mt-4">
+                    <span class="tag tag-violet">Roadmapping</span>
+                    <span class="tag tag-violet">Stakeholder Mgmt</span>
+                    <span class="tag tag-violet">Agile / Scrum</span>
+                </div>
+            </div>
+
+            <div class="feature-card reveal reveal-d1">
+                <div class="ficon ficon-blue">
+                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+                </div>
+                <div class="feature-title">Principal / Staff Engineering</div>
+                <div class="feature-desc">
+                    Designing distributed systems and cloud-native architectures that scale. Leading technical direction,
+                    setting engineering standards, and mentoring senior engineers across cross-functional teams.
+                </div>
+                <div class="flex flex-wrap gap-2 mt-4">
+                    <span class="tag tag-blue">System Design</span>
+                    <span class="tag tag-blue">Cloud Architecture</span>
+                    <span class="tag tag-blue">Tech Leadership</span>
+                </div>
+            </div>
+
+            <div class="feature-card reveal reveal-d2">
+                <div class="ficon ficon-emerald">
+                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+                </div>
+                <div class="feature-title">Full-Stack Development</div>
+                <div class="feature-desc">
+                    Hands-on development from database schema to pixel-perfect UI. Building production applications
+                    with Next.js, React, Node.js, PostgreSQL, and modern DevOps pipelines.
+                </div>
+                <div class="flex flex-wrap gap-2 mt-4">
+                    <span class="tag tag-green">Next.js / React</span>
+                    <span class="tag tag-green">Node.js</span>
+                    <span class="tag tag-green">PostgreSQL</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Principles -->
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <div class="section-header-left">
+                    <span class="section-label">Philosophy</span>
+                    <h3 class="section-title" style="font-size:1.6rem;">Guiding Principles</h3>
+                </div>
+                <div class="flex flex-col gap-6">
+                    <div class="principle reveal">
+                        <div class="principle-dot"></div>
+                        <div>
+                            <div class="principle-head">"Ship value, not features"</div>
+                            <div class="principle-body">Every engineering decision should trace back to a measurable user or business outcome.</div>
+                        </div>
+                    </div>
+                    <div class="principle reveal reveal-d1">
+                        <div class="principle-dot"></div>
+                        <div>
+                            <div class="principle-head">"Automation over repetition"</div>
+                            <div class="principle-body">If a process can be automated, it should be. Manual work is technical debt waiting to happen.</div>
+                        </div>
+                    </div>
+                    <div class="principle reveal reveal-d2">
+                        <div class="principle-dot"></div>
+                        <div>
+                            <div class="principle-head">"Security by design, not by chance"</div>
+                            <div class="principle-body">Security must be baked into architecture from day one — not retrofitted after an incident.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-center">
+                <img src="src/panda.gif" alt="Engineering illustration"
+                     class="w-64 h-64 rounded-2xl"
+                     style="box-shadow: var(--shadow-lg);">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =====================================================================
+     TECH STACK
+====================================================================== -->
+<section class="section section-alt">
+    <div class="container">
+        <p class="text-center mb-8"
+           style="font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;font-family:'JetBrains Mono',monospace;color:var(--text-muted);">
+            Core Technology Stack
+        </p>
+        <div class="flex flex-wrap justify-center gap-3">
+            <span class="tech-pill">Next.js</span>
+            <span class="tech-pill">React</span>
+            <span class="tech-pill">Node.js</span>
+            <span class="tech-pill">TypeScript</span>
+            <span class="tech-pill">PostgreSQL</span>
+            <span class="tech-pill">Python</span>
+            <span class="tech-pill">AWS</span>
+            <span class="tech-pill">Docker</span>
+            <span class="tech-pill">Kubernetes</span>
+            <span class="tech-pill">Terraform</span>
+            <span class="tech-pill">CI/CD</span>
+            <span class="tech-pill">Nginx</span>
+            <span class="tech-pill">Redis</span>
+            <span class="tech-pill">GraphQL</span>
+        </div>
+    </div>
+</section>
+
+<!-- =====================================================================
+     PROJECTS
+====================================================================== -->
+<section id="projects" class="section">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-label">Live Projects</span>
+            <h2 class="section-title">Production Applications</h2>
+            <p class="section-desc">Production applications I've built and currently operate</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+
+            <!-- SkillSapien -->
+            <div class="project-card reveal">
+                <div class="project-header" style="background:linear-gradient(135deg,#5b21b6,#4338ca);">
+                    <div class="project-header-meta">
+                        <span class="project-header-tag">AI · SaaS · EdTech</span>
+                        <span class="project-header-sub">10,000+ professionals</span>
+                    </div>
+                    <img src="src/1.gif" alt="SkillSapien Platform" class="project-preview">
+                </div>
+                <div class="project-body">
+                    <div class="project-title">SkillSapien</div>
+                    <div class="project-desc">
+                        AI-powered career development platform that gamifies professional growth. Features intelligent
+                        job matching, CV-to-profile parsing, interactive courses, real-time skill tracking, and expert
+                        mentorship — engaging professionals across multiple regions.
+                    </div>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="tag tag-violet">Next.js</span>
+                        <span class="tag tag-blue">AI / ML</span>
+                        <span class="tag tag-green">Node.js</span>
+                        <span class="tag tag-teal">PostgreSQL</span>
+                        <span class="tag tag-orange">Gamification</span>
+                    </div>
+                    <a href="https://skillsapien.com" target="_blank" rel="noopener"
+                       class="project-cta" style="background:#7c3aed;">
+                        Visit SkillSapien
+                        <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- East Gate Residences -->
+            <div class="project-card reveal reveal-d1">
+                <div class="project-header" style="background:linear-gradient(135deg,#047857,#0e7490);">
+                    <div class="project-header-meta">
+                        <span class="project-header-tag">PropTech · SaaS · AU/NZ</span>
+                        <span class="project-header-sub">Strata Management</span>
+                    </div>
+                    <img src="src/2.gif" alt="East Gate Residences Platform" class="project-preview">
+                </div>
+                <div class="project-body">
+                    <div class="project-title">East Gate Residences</div>
+                    <div class="project-desc">
+                        Comprehensive strata management and community engagement platform serving residential
+                        communities across Australia and New Zealand. Streamlines property management with digital
+                        document access, resident marketplace, community communications, and event coordination.
+                    </div>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="tag tag-green">Next.js</span>
+                        <span class="tag tag-teal">Node.js</span>
+                        <span class="tag tag-blue">PostgreSQL</span>
+                        <span class="tag tag-orange">Multi-tenancy</span>
+                        <span class="tag tag-pink">Docker</span>
+                    </div>
+                    <a href="https://eastgateresidences.com.au" target="_blank" rel="noopener"
+                       class="project-cta" style="background:#059669;">
+                        Visit East Gate Residences
+                        <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Healthcare App -->
+            <div class="project-card reveal">
+                <div class="project-header" style="background:linear-gradient(135deg,#1d4ed8,#0e7490);">
+                    <div class="project-header-meta">
+                        <span class="project-header-tag">HealthTech · Full-Stack</span>
+                    </div>
+                    <img src="src/panda.gif" alt="Healthcare Management System" class="project-preview">
+                </div>
+                <div class="project-body">
+                    <div class="project-title">Healthcare Management System</div>
+                    <div class="project-desc">
+                        Full-stack Next.js application with comprehensive patient management, appointment scheduling,
+                        and clinical workflows. Built with modern React, PostgreSQL, and containerised deployment
+                        on a cloud-native infrastructure.
+                    </div>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="tag tag-blue">Next.js</span>
+                        <span class="tag tag-green">PostgreSQL</span>
+                        <span class="tag tag-violet">Docker</span>
+                    </div>
+                    <a href="https://healthapp.gagneet.com" target="_blank" rel="noopener"
+                       class="project-cta" style="background:#2563eb;">
+                        View Live App
+                        <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Retirement Calculator -->
+            <div class="project-card reveal reveal-d1">
+                <div class="project-header" style="background:linear-gradient(135deg,#d97706,#ea580c);">
+                    <div class="project-header-meta">
+                        <span class="project-header-tag">FinTech · Calculator</span>
+                    </div>
+                    <img src="src/robot.gif" alt="Retirement Calculator" class="project-preview">
+                </div>
+                <div class="project-body">
+                    <div class="project-title">Australian Retirement Calculator</div>
+                    <div class="project-desc">
+                        Advanced retirement planning tool with superannuation modelling, healthcare cost projections,
+                        aged care planning, and dynamic investment allocation strategies tailored for the Australian
+                        financial system.
+                    </div>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="tag tag-orange">JavaScript</span>
+                        <span class="tag tag-pink">Chart.js</span>
+                        <span class="tag tag-blue">Financial Modelling</span>
+                    </div>
+                    <a href="https://retirement.gagneet.com" target="_blank" rel="noopener"
+                       class="project-cta" style="background:#d97706;">
+                        Try Calculator
+                        <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- =====================================================================
+     EXPERIENCE
+====================================================================== -->
+<section id="experience" class="section section-alt">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-label">Career</span>
+            <h2 class="section-title">Enterprise Experience</h2>
+            <p class="section-desc">Trusted by leading technology organisations worldwide</p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+            <div class="company-card reveal">
+                <div class="company-name">Microsoft</div>
+                <div class="company-role">Enterprise Automation</div>
+            </div>
+            <div class="company-card reveal reveal-d1">
+                <div class="company-name">Yahoo</div>
+                <div class="company-role">Performance Engineering</div>
+            </div>
+            <div class="company-card reveal reveal-d2">
+                <div class="company-name">Adobe</div>
+                <div class="company-role">Quality Engineering</div>
+            </div>
+            <div class="company-card reveal reveal-d3">
+                <div class="company-name">Oracle</div>
+                <div class="company-role">DevOps Leadership</div>
+            </div>
+        </div>
+
+        <div class="stats-banner">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="reveal">
+                    <div class="stat-num">20+</div>
+                    <div class="stat-lbl">Years Experience</div>
+                </div>
+                <div class="reveal reveal-d1">
+                    <div class="stat-num">4</div>
+                    <div class="stat-lbl">Live SaaS Products</div>
+                </div>
+                <div class="reveal reveal-d2">
+                    <div class="stat-num">10K+</div>
+                    <div class="stat-lbl">Platform Users</div>
+                </div>
+                <div class="reveal reveal-d3">
+                    <div class="stat-num">50+</div>
+                    <div class="stat-lbl">Engineers Mentored</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =====================================================================
+     CONTACT
+====================================================================== -->
+<section id="contact" class="section">
+    <div class="container text-center">
+        <span class="section-label">Let's Talk</span>
+        <h2 class="section-title mt-2 mb-4">Let's Connect</h2>
+        <p class="section-desc mx-auto mb-12">
+            Open to senior engineering leadership, technical product management, and advisory roles.
+            Also happy to chat about architecture, product strategy, or side projects.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+            <a href="mailto:gagneet@gagneet.com" class="cta-btn cta-primary">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                Email Me
+            </a>
+            <a href="https://linkedin.com/in/gagneet" target="_blank" rel="noopener" class="cta-btn cta-outline">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                LinkedIn
+            </a>
+            <a href="https://github.com/gagneet" target="_blank" rel="noopener" class="cta-btn cta-ghost">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                GitHub
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- =====================================================================
+     FOOTER
+====================================================================== -->
+<footer class="footer">
+    <div class="footer-grid">
+        <div>
+            <div class="footer-brand-name">Gagneet Singh</div>
+            <p class="footer-brand-desc">
+                Technical Product Manager · Principal Engineer · Full-Stack Developer.
+                Building products that create real business value.
+            </p>
+        </div>
+        <div class="footer-col">
+            <h4>Projects</h4>
+            <ul>
+                <li><a href="https://skillsapien.com" target="_blank" rel="noopener">SkillSapien</a></li>
+                <li><a href="https://eastgateresidences.com.au" target="_blank" rel="noopener">East Gate Residences</a></li>
+                <li><a href="https://healthapp.gagneet.com" target="_blank" rel="noopener">Healthcare App</a></li>
+                <li><a href="https://retirement.gagneet.com" target="_blank" rel="noopener">Retirement Calculator</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Connect</h4>
+            <ul>
+                <li><a href="mailto:gagneet@gagneet.com">Email</a></li>
+                <li><a href="https://linkedin.com/in/gagneet" target="_blank" rel="noopener">LinkedIn</a></li>
+                <li><a href="https://github.com/gagneet" target="_blank" rel="noopener">GitHub</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 Gagneet Singh. Building products that matter.</p>
+        <div class="footer-social">
+            <a href="https://linkedin.com/in/gagneet" target="_blank" rel="noopener" aria-label="LinkedIn">
+                <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="https://github.com/gagneet" target="_blank" rel="noopener" aria-label="GitHub">
+                <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            </a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    /* Theme toggle */
+    var themeToggle = document.getElementById('theme-toggle');
+    themeToggle && themeToggle.addEventListener('click', function() {
+        var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        if (isDark) {
+            document.documentElement.removeAttribute('data-theme');
+            localStorage.setItem('theme', 'light');
+        } else {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+        }
+    });
+
+    /* Mobile nav */
+    var mobileBtn = document.getElementById('mobile-menu-btn');
+    var mobileNav = document.getElementById('mobile-nav');
+    mobileBtn && mobileBtn.addEventListener('click', function() {
+        mobileNav.classList.toggle('open');
+    });
+    function closeMobileNav() { mobileNav.classList.remove('open'); }
+
+    /* Scroll header shadow */
+    var siteHeader = document.getElementById('site-header');
+    window.addEventListener('scroll', function() {
+        siteHeader.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    /* Scroll reveal */
+    var revealObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(function(el) {
+        revealObserver.observe(el);
+    });
+</script>
 
 </body>
 </html>
