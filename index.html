@@ -15,8 +15,8 @@
 
     <!-- Primary SEO -->
     <title>Gagneet Singh | Technical Product Manager · Principal Engineer · Full-Stack Developer</title>
-    <meta name="description" content="Gagneet Singh — Technical Product Manager, Principal/Staff Engineer and Full-Stack Developer with 20+ years delivering enterprise platforms, AI-powered SaaS products, and scalable cloud infrastructure.">
-    <meta name="keywords" content="Gagneet Singh, Technical Product Manager, Principal Engineer, Staff Engineer, Full-Stack Developer, DevOps, Test Automation, Cloud Architecture, Next.js, React, Node.js, AWS, Kubernetes, CI/CD, SkillSapien, East Gate Residences">
+    <meta name="description" content="Gagneet Singh — Technical Product Manager, Principal/Staff Engineer and Full-Stack Developer with 20+ years across Microsoft, Yahoo!, Macromedia/Adobe and Oracle. Builds and runs StrataOS, SkillSapien, Hamees Attire and Australian finance tools, with deep test automation, security and performance engineering.">
+    <meta name="keywords" content="Gagneet Singh, Technical Product Manager, Principal Engineer, Staff Engineer, Full-Stack Developer, DevOps, Test Automation, Cloud Architecture, Next.js, React, Node.js, AWS, Kubernetes, CI/CD, Playwright, k6, Security Testing, Performance Engineering, FastAPI, SkillSapien, StrataOS, East Gate Residences, Hamees Attire, Retirement Calculator, Mortgage Calculator, Microsoft, Yahoo, Macromedia, Adobe">
     <meta name="author" content="Gagneet Singh">
     <link rel="canonical" href="https://gagneet.com/">
 
@@ -24,7 +24,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://gagneet.com/">
     <meta property="og:title" content="Gagneet Singh | Technical Product Manager · Principal Engineer · Full-Stack Developer">
-    <meta property="og:description" content="20+ years delivering enterprise platforms, AI-powered SaaS, and cloud infrastructure. Currently building SkillSapien and East Gate Residences.">
+    <meta property="og:description" content="20+ years delivering enterprise platforms, AI-powered SaaS, and cloud infrastructure. Currently building StrataOS (East Gate Residences), SkillSapien and Hamees Attire.">
     <meta property="og:site_name" content="Gagneet Singh">
 
     <!-- Twitter Card -->
@@ -40,12 +40,12 @@
       "name": "Gagneet Singh",
       "url": "https://gagneet.com",
       "jobTitle": ["Technical Product Manager", "Principal Engineer", "Full-Stack Developer"],
-      "description": "Technical Product Manager, Principal/Staff Engineer and Full-Stack Developer with 20+ years of experience delivering enterprise platforms and scalable cloud infrastructure.",
+      "description": "Technical Product Manager, Principal/Staff Engineer and Full-Stack Developer with 20+ years of experience at Microsoft, Yahoo!, Macromedia/Adobe and Oracle. Builder of StrataOS, SkillSapien, Hamees Attire and Australian personal-finance tools.",
       "sameAs": [
         "https://linkedin.com/in/gagneet",
         "https://github.com/gagneet"
       ],
-      "knowsAbout": ["Product Management", "Full-Stack Development", "Cloud Architecture", "DevOps", "Test Automation", "AI/ML Platforms", "Next.js", "React", "Node.js", "AWS", "Kubernetes"]
+      "knowsAbout": ["Product Management", "Full-Stack Development", "Cloud Architecture", "DevOps", "Test Automation", "Quality Engineering", "Security Testing", "Performance Engineering", "Multi-Tenant SaaS", "Financial Modelling", "AI/ML Platforms", "Next.js", "React", "Node.js", "Python", "FastAPI", "PostgreSQL", "AWS", "Kubernetes"]
     }
     </script>
 
@@ -635,6 +635,18 @@
             color: #fff;
         }
         .project-header-sub { font-size: 0.78rem; color: rgba(255,255,255,0.65); }
+        .project-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.75rem;
+            margin-top: 1.25rem;
+        }
+        .metric-num { font-size: 1.35rem; font-weight: 800; color: #fff; letter-spacing: -0.02em; line-height: 1.2; }
+        .metric-lbl { font-size: 0.7rem; color: rgba(255,255,255,0.72); margin-top: 0.15rem; line-height: 1.35; }
+        .project-links { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+        .quality-list { list-style: none; padding: 0; margin: 1rem 0 0; display: flex; flex-direction: column; gap: 0.55rem; }
+        .quality-list li { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; padding-left: 1.1rem; position: relative; }
+        .quality-list li::before { content: ''; position: absolute; left: 0; top: 0.6em; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
 
         /* ================================================================
            COMPANY CARDS
@@ -654,6 +666,8 @@
         }
         .company-name { font-size: 1.15rem; font-weight: 800; color: var(--accent); }
         .company-role { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem; font-weight: 500; }
+        .company-card.exp { text-align: left; padding: 1.5rem; }
+        .company-desc { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.65; margin-top: 0.75rem; }
 
         /* ================================================================
            STATS BANNER
@@ -785,6 +799,7 @@
         <div class="nav-links-desktop">
             <a href="#about">About</a>
             <a href="#projects">Projects</a>
+            <a href="#quality">Quality</a>
             <a href="#experience">Experience</a>
             <a href="#contact">Contact</a>
         </div>
@@ -807,6 +822,7 @@
     <nav id="mobile-nav">
         <a href="#about"      onclick="closeMobileNav()">About</a>
         <a href="#projects"   onclick="closeMobileNav()">Projects</a>
+        <a href="#quality"    onclick="closeMobileNav()">Quality</a>
         <a href="#experience" onclick="closeMobileNav()">Experience</a>
         <a href="#contact"    onclick="closeMobileNav()">Contact</a>
     </nav>
@@ -829,8 +845,9 @@
             <span class="role-pill rp-purple">Full-Stack Developer</span>
         </div>
         <p class="hero-desc">
-            20+ years bridging product strategy and engineering execution — defining roadmaps,
-            architecting scalable systems, and shipping full-stack products trusted by enterprise teams worldwide.
+            20+ years across Microsoft, Yahoo!, Macromedia/Adobe and Oracle, bridging product strategy and
+            engineering. Today I build, test, secure and run my own production platforms, from strata management
+            to retail and personal finance.
         </p>
         <div class="hero-cta">
             <a href="#projects" class="btn-hero-primary">
@@ -970,6 +987,16 @@
             <span class="tech-pill">Nginx</span>
             <span class="tech-pill">Redis</span>
             <span class="tech-pill">GraphQL</span>
+            <span class="tech-pill">FastAPI</span>
+            <span class="tech-pill">MongoDB</span>
+            <span class="tech-pill">Prisma</span>
+            <span class="tech-pill">Playwright</span>
+            <span class="tech-pill">Pytest</span>
+            <span class="tech-pill">Jest / Vitest</span>
+            <span class="tech-pill">k6</span>
+            <span class="tech-pill">Temporal</span>
+            <span class="tech-pill">GitHub Actions</span>
+            <span class="tech-pill">Cloudflare</span>
         </div>
     </div>
 </section>
@@ -982,26 +1009,70 @@
         <div class="section-header">
             <span class="section-label">Live Projects</span>
             <h2 class="section-title">Production Applications</h2>
-            <p class="section-desc">Production applications I've built and currently operate</p>
+            <p class="section-desc">Products I've designed, built, tested and operate myself, from the database schema to the nginx config</p>
         </div>
 
         <div class="grid md:grid-cols-2 gap-6">
 
-            <!-- SkillSapien -->
+            <!-- StrataOS / East Gate Residences -->
             <div class="project-card reveal">
+                <div class="project-header" style="background:linear-gradient(135deg,#047857,#0e7490);">
+                    <div class="project-header-meta">
+                        <span class="project-header-tag">PropTech · Multi-Tenant SaaS · AU</span>
+                        <span class="project-header-sub">Powers East Gate Residences</span>
+                    </div>
+                    <div class="project-metrics">
+                        <div><div class="metric-num">14K+</div><div class="metric-lbl">Backend tests</div></div>
+                        <div><div class="metric-num">7,400+</div><div class="metric-lbl">Commits in 2026</div></div>
+                        <div><div class="metric-num">6,600+</div><div class="metric-lbl">Functions mapped</div></div>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <div class="project-title">StrataOS</div>
+                    <div class="project-desc">
+                        Multi-tenant strata management platform running East Gate Residences under NSW/ACT strata law.
+                        Covers a double-entry general ledger, levy runs and arrears, AI OCR for supplier invoices,
+                        maintenance and work orders, AGM voting, compliance registers, and a resident portal with
+                        chat and marketplace. Every building is an isolated tenant enforced by PostgreSQL row-level
+                        security. Money is stored as integer cents. Records are soft-archived for 7-year retention.
+                        The system of record is moving from MongoDB to PostgreSQL through a shadow-read cutover
+                        that reconciles both stores against live data.
+                    </div>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="tag tag-green">Next.js 16</span>
+                        <span class="tag tag-teal">FastAPI</span>
+                        <span class="tag tag-blue">PostgreSQL + RLS</span>
+                        <span class="tag tag-violet">MongoDB</span>
+                        <span class="tag tag-orange">Redis · Temporal</span>
+                        <span class="tag tag-pink">k6 · Playwright</span>
+                    </div>
+                    <a href="https://eastgateresidences.com.au" target="_blank" rel="noopener"
+                       class="project-cta" style="background:#059669;">
+                        Visit East Gate Residences
+                        <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- SkillSapien -->
+            <div class="project-card reveal reveal-d1">
                 <div class="project-header" style="background:linear-gradient(135deg,#5b21b6,#4338ca);">
                     <div class="project-header-meta">
                         <span class="project-header-tag">AI · SaaS · EdTech</span>
-                        <span class="project-header-sub">10,000+ professionals</span>
+                        <span class="project-header-sub">Co-founder &amp; CTO</span>
                     </div>
-                    <img src="src/1.gif" alt="SkillSapien Platform" class="project-preview">
+                    <div class="project-metrics">
+                        <div><div class="metric-num">10K+</div><div class="metric-lbl">Professionals</div></div>
+                        <div><div class="metric-num">AI</div><div class="metric-lbl">Job &amp; skill matching</div></div>
+                        <div><div class="metric-num">Patent</div><div class="metric-lbl">Skill-matching filing</div></div>
+                    </div>
                 </div>
                 <div class="project-body">
                     <div class="project-title">SkillSapien</div>
                     <div class="project-desc">
                         AI-powered career development platform that gamifies professional growth. Features intelligent
                         job matching, CV-to-profile parsing, interactive courses, real-time skill tracking, and expert
-                        mentorship — engaging professionals across multiple regions.
+                        mentorship, engaging professionals across multiple regions.
                     </div>
                     <div class="flex flex-wrap gap-2 mb-4">
                         <span class="tag tag-violet">Next.js</span>
@@ -1018,60 +1089,39 @@
                 </div>
             </div>
 
-            <!-- East Gate Residences -->
-            <div class="project-card reveal reveal-d1">
-                <div class="project-header" style="background:linear-gradient(135deg,#047857,#0e7490);">
-                    <div class="project-header-meta">
-                        <span class="project-header-tag">PropTech · SaaS · AU/NZ</span>
-                        <span class="project-header-sub">Strata Management</span>
-                    </div>
-                    <img src="src/2.gif" alt="East Gate Residences Platform" class="project-preview">
-                </div>
-                <div class="project-body">
-                    <div class="project-title">East Gate Residences</div>
-                    <div class="project-desc">
-                        Comprehensive strata management and community engagement platform serving residential
-                        communities across Australia and New Zealand. Streamlines property management with digital
-                        document access, resident marketplace, community communications, and event coordination.
-                    </div>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="tag tag-green">Next.js</span>
-                        <span class="tag tag-teal">Node.js</span>
-                        <span class="tag tag-blue">PostgreSQL</span>
-                        <span class="tag tag-orange">Multi-tenancy</span>
-                        <span class="tag tag-pink">Docker</span>
-                    </div>
-                    <a href="https://eastgateresidences.com.au" target="_blank" rel="noopener"
-                       class="project-cta" style="background:#059669;">
-                        Visit East Gate Residences
-                        <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Healthcare App -->
+            <!-- Hamees Attire -->
             <div class="project-card reveal">
-                <div class="project-header" style="background:linear-gradient(135deg,#1d4ed8,#0e7490);">
+                <div class="project-header" style="background:linear-gradient(135deg,#be123c,#7e22ce);">
                     <div class="project-header-meta">
-                        <span class="project-header-tag">HealthTech · Full-Stack</span>
+                        <span class="project-header-tag">Retail · Inventory · Orders</span>
+                        <span class="project-header-sub">Bespoke tailoring</span>
                     </div>
-                    <img src="src/panda.gif" alt="Healthcare Management System" class="project-preview">
+                    <div class="project-metrics">
+                        <div><div class="metric-num">900+</div><div class="metric-lbl">Vitest tests</div></div>
+                        <div><div class="metric-num">5</div><div class="metric-lbl">Staff roles</div></div>
+                        <div><div class="metric-num">4</div><div class="metric-lbl">Site languages</div></div>
+                    </div>
                 </div>
                 <div class="project-body">
-                    <div class="project-title">Healthcare Management System</div>
+                    <div class="project-title">Hamees Attire</div>
                     <div class="project-desc">
-                        Full-stack Next.js application with comprehensive patient management, appointment scheduling,
-                        and clinical workflows. Built with modern React, PostgreSQL, and containerised deployment
-                        on a cloud-native infrastructure.
+                        Inventory and order management system for a bespoke tailoring business. Fabric is reserved
+                        automatically when an order is placed. Orders move from cutting through stitching to delivery,
+                        and invoices are GST-compliant with advance and instalment tracking. The system also covers
+                        customer measurements, role-based dashboards and WhatsApp notifications. The public site runs
+                        in four languages with no database access. Customers track orders through signed links
+                        that expire after 30 minutes, and enquiry forms are rate-limited and protected by honeypots.
                     </div>
                     <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="tag tag-blue">Next.js</span>
-                        <span class="tag tag-green">PostgreSQL</span>
-                        <span class="tag tag-violet">Docker</span>
+                        <span class="tag tag-pink">Next.js 16</span>
+                        <span class="tag tag-violet">TypeScript</span>
+                        <span class="tag tag-blue">Prisma · PostgreSQL</span>
+                        <span class="tag tag-green">WhatsApp API</span>
+                        <span class="tag tag-orange">Cloudflare Tunnel</span>
                     </div>
-                    <a href="https://healthapp.gagneet.com" target="_blank" rel="noopener"
-                       class="project-cta" style="background:#2563eb;">
-                        View Live App
+                    <a href="https://hamees.gagneet.com" target="_blank" rel="noopener"
+                       class="project-cta" style="background:#be123c;">
+                        Visit Hamees Attire
                         <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
                     </a>
                 </div>
@@ -1081,25 +1131,114 @@
             <div class="project-card reveal reveal-d1">
                 <div class="project-header" style="background:linear-gradient(135deg,#d97706,#ea580c);">
                     <div class="project-header-meta">
-                        <span class="project-header-tag">FinTech · Calculator</span>
+                        <span class="project-header-tag">FinTech · Financial Modelling</span>
+                        <span class="project-header-sub">Runs in your browser</span>
                     </div>
-                    <img src="src/robot.gif" alt="Retirement Calculator" class="project-preview">
+                    <div class="project-metrics">
+                        <div><div class="metric-num">2,500+</div><div class="metric-lbl">Jest tests</div></div>
+                        <div><div class="metric-num">Monte Carlo</div><div class="metric-lbl">Stochastic simulation</div></div>
+                        <div><div class="metric-num">11</div><div class="metric-lbl">Levers solved in reverse</div></div>
+                    </div>
                 </div>
                 <div class="project-body">
                     <div class="project-title">Australian Retirement Calculator</div>
                     <div class="project-desc">
-                        Advanced retirement planning tool with superannuation modelling, healthcare cost projections,
-                        aged care planning, and dynamic investment allocation strategies tailored for the Australian
-                        financial system.
+                        Privacy-first retirement planner for the Australian system. No data leaves the device. It models
+                        superannuation with Super Guarantee caps and Division 293 warnings, plus the Age Pension,
+                        investment property and healthcare costs. Monte Carlo runs draw inflation, growth and returns
+                        independently for each year and report median, p10 and p90 outcomes. A reverse planner uses
+                        bisection solvers to find the smallest change that meets a goal. Results export to PDF and XLSX.
                     </div>
                     <div class="flex flex-wrap gap-2 mb-4">
                         <span class="tag tag-orange">JavaScript</span>
                         <span class="tag tag-pink">Chart.js</span>
-                        <span class="tag tag-blue">Financial Modelling</span>
+                        <span class="tag tag-blue">Monte Carlo</span>
+                        <span class="tag tag-green">Jest · Playwright</span>
                     </div>
                     <a href="https://retirement.gagneet.com" target="_blank" rel="noopener"
                        class="project-cta" style="background:#d97706;">
                         Try Calculator
+                        <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Home Expenses, Mortgage & Investment Property -->
+            <div class="project-card reveal">
+                <div class="project-header" style="background:linear-gradient(135deg,#0f766e,#1d4ed8);">
+                    <div class="project-header-meta">
+                        <span class="project-header-tag">FinTech · Household &amp; Property</span>
+                        <span class="project-header-sub">3 connected apps</span>
+                    </div>
+                    <div class="project-metrics">
+                        <div><div class="metric-num">10K+</div><div class="metric-lbl">Transactions reconciled</div></div>
+                        <div><div class="metric-num">4</div><div class="metric-lbl">Bank statement parsers</div></div>
+                        <div><div class="metric-num">400+</div><div class="metric-lbl">Jest &amp; pytest tests</div></div>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <div class="project-title">Home Expenses, Mortgage &amp; Investment Property</div>
+                    <div class="project-desc">
+                        <strong>Home Expenses</strong> imports AMEX, CBA, ING and uBank statement PDFs through a Python
+                        parser service. SHA-256 hashing blocks duplicate uploads. The app detects transfers, refunds and
+                        subscriptions, and reports budgets and household net worth.
+                        The <strong>Mortgage Calculator</strong> estimates repayments with LVR, LMI, stamp duty for
+                        NSW, VIC and QLD, offset accounts and extra repayments.
+                        The <strong>Property Investment Calculator</strong> turns an Excel model into a Next.js and FastAPI
+                        app. It builds amortisation schedules with rate changes over time and tracks cash flow and tax
+                        deductions for investment properties.
+                    </div>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="tag tag-teal">Next.js 16</span>
+                        <span class="tag tag-blue">FastAPI · Python</span>
+                        <span class="tag tag-green">PostgreSQL</span>
+                        <span class="tag tag-violet">React · Recharts</span>
+                        <span class="tag tag-orange">numpy-financial</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://mortgage.gagneet.com" target="_blank" rel="noopener"
+                           class="project-cta" style="background:#0f766e;">
+                            Mortgage Calculator
+                            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                        </a>
+                        <a href="https://property.gagneet.com" target="_blank" rel="noopener"
+                           class="project-cta" style="background:#1d4ed8;">
+                            Property Calculator
+                            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Healthcare App -->
+            <div class="project-card reveal reveal-d1">
+                <div class="project-header" style="background:linear-gradient(135deg,#1d4ed8,#0e7490);">
+                    <div class="project-header-meta">
+                        <span class="project-header-tag">HealthTech · Full-Stack</span>
+                        <span class="project-header-sub">Cloud-native deployment</span>
+                    </div>
+                    <div class="project-metrics">
+                        <div><div class="metric-num">1,400+</div><div class="metric-lbl">Commits</div></div>
+                        <div><div class="metric-num">IaC</div><div class="metric-lbl">Docker · K8s · Azure</div></div>
+                        <div><div class="metric-num">E2E</div><div class="metric-lbl">Playwright &amp; Jest</div></div>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <div class="project-title">Healthcare Management System</div>
+                    <div class="project-desc">
+                        Full-stack Next.js application with patient management, appointment scheduling and
+                        clinical workflows. Built with React and PostgreSQL, and deployed with Docker, Kubernetes
+                        manifests and infrastructure-as-code pipelines.
+                    </div>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="tag tag-blue">Next.js</span>
+                        <span class="tag tag-green">PostgreSQL</span>
+                        <span class="tag tag-violet">Docker</span>
+                        <span class="tag tag-teal">Kubernetes</span>
+                    </div>
+                    <a href="https://healthapp.gagneet.com" target="_blank" rel="noopener"
+                       class="project-cta" style="background:#2563eb;">
+                        View Live App
                         <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
                     </a>
                 </div>
@@ -1110,32 +1249,121 @@
 </section>
 
 <!-- =====================================================================
+     ENGINEERING QUALITY
+====================================================================== -->
+<section id="quality" class="section section-alt">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-label">How I Ship</span>
+            <h2 class="section-title">Testing, Security &amp; Performance</h2>
+            <p class="section-desc">
+                Two decades of quality, performance and automation engineering shape how I build my own products.
+                Nothing goes out untested, unguarded or unmeasured.
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="feature-card reveal">
+                <div class="ficon ficon-emerald">
+                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </div>
+                <div class="feature-title">Careful Testing</div>
+                <ul class="quality-list">
+                    <li>17,000+ automated tests across my live products: pytest, Jest, Vitest and Playwright</li>
+                    <li>Tenant-isolation tests prove one building's data never leaks into another's</li>
+                    <li>CI guardrails fail the build on any duplicate or divergent financial calculation</li>
+                    <li>Figures reconciled against production data, not just against the code</li>
+                </ul>
+            </div>
+
+            <div class="feature-card reveal reveal-d1">
+                <div class="ficon ficon-violet">
+                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                </div>
+                <div class="feature-title">Security by Design</div>
+                <ul class="quality-list">
+                    <li>PostgreSQL row-level security, TOTP MFA, CSRF protection and rate limiting</li>
+                    <li>Signed, expiring links, honeypots, and an outbound email queue that holds mail for review</li>
+                    <li>Dependency audits and security scans in CI, plus spreadsheet formula-injection guards</li>
+                    <li>Audit trails, soft-archive retention, and uniform 404s so attackers can't enumerate records</li>
+                </ul>
+            </div>
+
+            <div class="feature-card reveal reveal-d2">
+                <div class="ficon ficon-blue">
+                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                </div>
+                <div class="feature-title">Performance Engineering</div>
+                <ul class="quality-list">
+                    <li>k6 load and fan-out benchmarks with Grafana dashboards</li>
+                    <li>Background job queues (ARQ, Redis, Temporal) keep slow work off request paths</li>
+                    <li>Expensive analyses computed on demand and marked stale when inputs change</li>
+                    <li>Self-hosted with nginx, PM2, systemd and Cloudflare Tunnel, monitored and tuned in production</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =====================================================================
      EXPERIENCE
 ====================================================================== -->
-<section id="experience" class="section section-alt">
+<section id="experience" class="section">
     <div class="container">
         <div class="section-header">
             <span class="section-label">Career</span>
             <h2 class="section-title">Enterprise Experience</h2>
-            <p class="section-desc">Trusted by leading technology organisations worldwide</p>
+            <p class="section-desc">Tech lead roles across the US, Australia, Switzerland and India</p>
         </div>
 
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-            <div class="company-card reveal">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mb-12">
+            <div class="company-card exp reveal">
                 <div class="company-name">Microsoft</div>
                 <div class="company-role">Enterprise Automation</div>
+                <div class="company-desc">
+                    Built test and release automation for enterprise products at Microsoft scale. Replaced
+                    repetitive manual verification with automated functional, regression and deployment checks.
+                </div>
             </div>
-            <div class="company-card reveal reveal-d1">
-                <div class="company-name">Yahoo</div>
+            <div class="company-card exp reveal reveal-d1">
+                <div class="company-name">Yahoo!</div>
                 <div class="company-role">Performance Engineering</div>
+                <div class="company-desc">
+                    Ran load, stress and capacity testing for high-traffic consumer web properties. Profiled
+                    bottlenecks and turned the results into fixes before they reached users.
+                </div>
             </div>
-            <div class="company-card reveal reveal-d2">
-                <div class="company-name">Adobe</div>
+            <div class="company-card exp reveal reveal-d2">
+                <div class="company-name">Macromedia / Adobe</div>
                 <div class="company-role">Quality Engineering</div>
+                <div class="company-desc">
+                    Owned test strategy, automation and release sign-off for creative and web tooling,
+                    carrying quality practices through Adobe's acquisition of Macromedia.
+                </div>
             </div>
-            <div class="company-card reveal reveal-d3">
+            <div class="company-card exp reveal">
                 <div class="company-name">Oracle</div>
                 <div class="company-role">DevOps Leadership</div>
+                <div class="company-desc">
+                    Led CI/CD, infrastructure automation and release engineering, and helped teams ship
+                    faster with fewer failed deployments.
+                </div>
+            </div>
+            <div class="company-card exp reveal reveal-d1">
+                <div class="company-name">SkillSapien</div>
+                <div class="company-role">Co-founder &amp; CTO</div>
+                <div class="company-desc">
+                    Set product and technical direction for an AI career platform, and filed a business-methods
+                    patent for its skill-matching system.
+                </div>
+            </div>
+            <div class="company-card exp reveal reveal-d2">
+                <div class="company-name">Independent Products</div>
+                <div class="company-role">Founder · Principal Engineer</div>
+                <div class="company-desc">
+                    Designs, builds, tests and self-hosts StrataOS, Hamees Attire and a suite of Australian
+                    finance tools end to end.
+                </div>
             </div>
         </div>
 
@@ -1146,12 +1374,12 @@
                     <div class="stat-lbl">Years Experience</div>
                 </div>
                 <div class="reveal reveal-d1">
-                    <div class="stat-num">4</div>
-                    <div class="stat-lbl">Live SaaS Products</div>
+                    <div class="stat-num">8</div>
+                    <div class="stat-lbl">Apps in Production</div>
                 </div>
                 <div class="reveal reveal-d2">
-                    <div class="stat-num">10K+</div>
-                    <div class="stat-lbl">Platform Users</div>
+                    <div class="stat-num">17K+</div>
+                    <div class="stat-lbl">Automated Tests</div>
                 </div>
                 <div class="reveal reveal-d3">
                     <div class="stat-num">50+</div>
@@ -1165,7 +1393,7 @@
 <!-- =====================================================================
      CONTACT
 ====================================================================== -->
-<section id="contact" class="section">
+<section id="contact" class="section section-alt">
     <div class="container text-center">
         <span class="section-label">Let's Talk</span>
         <h2 class="section-title mt-2 mb-4">Let's Connect</h2>
@@ -1206,9 +1434,12 @@
             <h4>Projects</h4>
             <ul>
                 <li><a href="https://skillsapien.com" target="_blank" rel="noopener">SkillSapien</a></li>
-                <li><a href="https://eastgateresidences.com.au" target="_blank" rel="noopener">East Gate Residences</a></li>
-                <li><a href="https://healthapp.gagneet.com" target="_blank" rel="noopener">Healthcare App</a></li>
+                <li><a href="https://eastgateresidences.com.au" target="_blank" rel="noopener">StrataOS · East Gate</a></li>
+                <li><a href="https://hamees.gagneet.com" target="_blank" rel="noopener">Hamees Attire</a></li>
                 <li><a href="https://retirement.gagneet.com" target="_blank" rel="noopener">Retirement Calculator</a></li>
+                <li><a href="https://mortgage.gagneet.com" target="_blank" rel="noopener">Mortgage Calculator</a></li>
+                <li><a href="https://property.gagneet.com" target="_blank" rel="noopener">Property Calculator</a></li>
+                <li><a href="https://healthapp.gagneet.com" target="_blank" rel="noopener">Healthcare App</a></li>
             </ul>
         </div>
         <div class="footer-col">

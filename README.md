@@ -1,16 +1,16 @@
 <a href="http://gagneet.com/" target="_blank" rel="noreferrer"><img src="https://user-images.githubusercontent.com/203433/139530832-4c172386-ec46-4ccd-be70-f5e5056d3405.jpg" alt="gagneet banner"></a>
 
-## Hi there 👋 - I'm Gagneet Singh - DevOps & Test Automation Lead
+## Hi there 👋 - I'm Gagneet Singh - Technical Product Manager · Principal Engineer · Full-Stack Developer
 
 Let's Start with the Tech Blog & [Live Long and Prosper](http://gagneet.com/)
 
-I'm a **DevOps and Test Automation Lead** with 20+ years of experience building scalable systems, leading enterprise automation initiatives, and driving innovation through efficient development practices. I'm an Automation, Performance and Security testing expert 💻, Love publishing pics I took 📸, and an electronic hobbyist 🎨!
+I'm a **Technical Product Manager, Principal Engineer and Full-Stack Developer** with 20+ years across **Microsoft, Yahoo!, Macromedia/Adobe and Oracle**. I started in quality, performance and automation engineering, and today I design, build, test, secure and self-host my own production platforms. I'm an Automation, Performance and Security testing expert 💻, Love publishing pics I took 📸, and an electronic hobbyist 🎨!
 
 ---
 
 ## 🚀 My Philosophy & Approach
 
-I believe in empowering teams through comprehensive automation strategies that span from infrastructure provisioning to security testing. My approach combines deep technical expertise in test automation with modern DevOps practices, focusing on creating resilient, scalable systems that enable rapid, secure deployments. I love the entire process of developing and creating innovative ideas to be lazy. Having worked across enterprise environments at Microsoft, Yahoo, Adobe, and Oracle, I bring a unique perspective on scaling automation across diverse technology stacks.
+I believe in empowering teams through comprehensive automation strategies that span from infrastructure provisioning to security testing. My approach combines deep technical expertise in test automation with modern DevOps practices, focusing on creating resilient, scalable systems that enable rapid, secure deployments. I love the entire process of developing and creating innovative ideas to be lazy. Having worked across enterprise environments at Microsoft, Yahoo!, Macromedia/Adobe, and Oracle, I bring a unique perspective on scaling automation across diverse technology stacks.
 
 ---
 
@@ -23,28 +23,49 @@ I believe in empowering teams through comprehensive automation strategies that s
 
 ---
 
-## 🛠️ Key Projects & Contributions
+## 🛠️ Live Products
 
-### 🏥 Healthcare Platform Infrastructure Automation
-**Architected and deployed** a comprehensive Azure-based infrastructure for a health startup using Infrastructure as Code.
-- **Technologies:** Terraform, Azure, Docker, GitHub Actions, Let's Encrypt, Nginx
-- **Role:** Led end-to-end infrastructure design with network segmentation, managed databases (MySQL, Cosmos DB, Redis), and automated SSL certificate management.
-- **Impact:** Achieved HIPAA-compliant deployment pipeline with blue/green deployment capabilities and disaster recovery.
-- [Blog Post](https://thoughtsatwork.wordpress.com) | [Technical Deep Dive](#project-healthcare-deep-dive)
+### 🏢 StrataOS: Multi-Tenant Strata Management ([East Gate Residences](https://eastgateresidences.com.au))
+- **What:** SaaS platform for strata schemes under NSW/ACT law. It covers a double-entry ledger, levy runs and arrears, AI OCR for supplier invoices, work orders, AGM voting, compliance registers and a resident portal.
+- **Technologies:** Next.js 16, React 19, FastAPI, PostgreSQL (row-level security), MongoDB, Redis/ARQ, Temporal, k6, Playwright
+- **Engineering:** 14,000+ backend tests. Every building is an isolated tenant. Money is stored as integer cents, and records are soft-archived for 7 years. The MongoDB → PostgreSQL move uses a shadow-read cutover checked against live data.
 
-### 🔧 Enterprise Test Automation Framework
-**Led development and implementation** of comprehensive automation testing frameworks across multiple enterprises.
-- **Technologies:** Cypress, Playwright, Selenium, React, React Native, Node.js
-- **Role:** Designed and built automation frameworks covering functional, performance, and security testing.
-- **Impact:** Reduced manual testing cycles by 70%, improved test coverage across web and mobile applications.
-- [Framework Documentation](#project-test-framework-docs) | [Implementation Guide](#project-test-framework-guide)
+### 🧵 [Hamees Attire](https://hamees.gagneet.com): Tailoring Inventory & Order Management
+- **What:** Automatic fabric reservation, a production workflow from cutting to delivery, GST invoicing, customer measurements, role-based dashboards and WhatsApp notifications. The public site runs in four languages.
+- **Technologies:** Next.js 16, TypeScript, Prisma 7, PostgreSQL 16, NextAuth, PM2, Cloudflare Tunnel
+- **Engineering:** 900+ Vitest tests. Order-tracking links are signed and expire after 30 minutes. Enquiry forms are rate-limited and use honeypots. The marketing site has no database access.
 
-### 🚀 Multi-Enterprise DevOps Transformation
-**Drove DevOps adoption** across various enterprises and startups in healthcare, finance, and technology sectors.
-- **Technologies:** CI/CD pipelines, Infrastructure as Code, Monitoring & Logging, Security Integration
-- **Role:** Led cross-functional teams in implementing modern DevOps practices and automation strategies.
-- **Impact:** Accelerated deployment frequency, improved system reliability, and reduced time-to-market.
-- [Case Studies](#project-devops-case-studies) | [Transformation Methodology](#project-devops-methodology)
+### 📈 [Australian Retirement Calculator](https://retirement.gagneet.com)
+- **What:** Privacy-first planner that runs entirely in the browser. It models super (SG caps, Division 293), the Age Pension, investment property and healthcare. A reverse planner uses bisection solvers across 11 levers.
+- **Engineering:** Monte Carlo runs draw rates independently for each year and report median, p10 and p90 outcomes. Results export to PDF and XLSX. 2,500+ Jest tests.
+
+### 🏠 Home Expenses, [Mortgage](https://mortgage.gagneet.com) & [Investment Property](https://property.gagneet.com) Calculators
+- **Home Expenses:** Imports AMEX, CBA, ING and uBank statement PDFs through a FastAPI parser. Blocks duplicate uploads by SHA-256 hash, detects transfers, refunds and subscriptions, and reports budgets and net worth. Validated against 10,000+ real transactions.
+- **Mortgage Calculator:** LVR and LMI, stamp duty for NSW/VIC/QLD, offset accounts, extra repayments and amortisation charts.
+- **Property Investment Calculator:** An Excel model rebuilt as a Next.js and FastAPI app, with amortisation schedules that handle rate changes, plus cash flow and tax deductions.
+
+### 🎓 [SkillSapien](https://skillsapien.com): Co-founder & CTO
+AI career platform with job matching, CV parsing, courses and gamified skill tracking. Business-methods patent filed for its skill-matching system.
+
+### 🏥 Healthcare Platform
+Next.js patient management and scheduling app, deployed with Terraform/Azure IaC, Docker, Kubernetes manifests, blue/green pipelines and automated SSL.
+
+---
+
+## 🧪 Testing, Security & Performance
+
+- **Testing:** 17,000+ automated tests across my products (pytest, Jest, Vitest, Playwright). Tenant-isolation suites, CI guardrails against divergent financial calculations, and reconciliation against production data.
+- **Security:** PostgreSQL RLS, TOTP MFA, CSRF protection, rate limiting, signed expiring links, dependency audits and security scans in CI, audit trails and formula-injection guards.
+- **Performance:** k6 load benchmarks with Grafana dashboards, background job queues, on-demand computation, and tuning of self-hosted nginx, PM2 and systemd services.
+
+---
+
+## 🏢 Enterprise Experience
+
+- **Microsoft:** Enterprise automation. Test and release automation for enterprise products.
+- **Yahoo!:** Performance engineering. Load, stress and capacity testing for high-traffic web properties.
+- **Macromedia / Adobe:** Quality engineering. Test strategy, automation and release sign-off for creative and web tooling.
+- **Oracle:** DevOps leadership. CI/CD, infrastructure automation and release engineering.
 
 ---
 
@@ -92,6 +113,7 @@ I believe in empowering teams through comprehensive automation strategies that s
 
 ## 🎯 What I'm Currently Focusing On
 
+🏢 **Scaling StrataOS** to more strata schemes and finishing the PostgreSQL cutover.
 🔧 **Optimizing Infrastructure as Code** practices with Terraform for healthcare and enterprise environments.
 👥 **Mentoring teams** in modern test automation strategies using Cypress and Playwright.
 🛡️ **Advancing DevSecOps** practices with integrated security testing throughout the development lifecycle.
@@ -117,7 +139,7 @@ I believe in empowering teams through comprehensive automation strategies that s
 
 ## 🌟 Professional Highlights
 
-🏢 **Enterprise Experience:** Microsoft Corporation, Yahoo, Adobe, Oracle.
+🏢 **Enterprise Experience:** Microsoft Corporation, Yahoo!, Macromedia/Adobe, Oracle.
 🌏 **Global Leadership:** Tech lead positions across US, Australia, Switzerland, and India.
 🚀 **Entrepreneurship:** Co-founder & CTO at Skillsapien.com.
 🎓 **Education:** UNSW Business School background.
